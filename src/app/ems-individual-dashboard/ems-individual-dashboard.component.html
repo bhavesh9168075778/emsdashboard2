@@ -2,6 +2,7 @@
     <ngx-ui-loader [loaderId]="'individual_graph'"></ngx-ui-loader>
     <div class="row">
         <div class="col-md-3">
+            
             <mat-card class="padding">
                 <mat-card-content>
                     <ng-select class="custom" [items]="uniqueDeviceId | keyvalue" bindLabel="selectedDevice"
@@ -12,6 +13,7 @@
             </mat-card>
         </div>
         <div class="col-md-3 ">
+          
             <mat-card class="padding">
                 <mat-card-content>
                     <ng-select class="custom" [items]="energyMeterIdArray" bindLabel="meterSerialNumber"
@@ -22,6 +24,7 @@
             </mat-card>
         </div>
         <div class="col-md-3">
+           
             <mat-card class="padding">
                 <mat-card-content>
                     <ng-select class="custom" [items]="parametersList" placeholder="Parameters"
@@ -32,6 +35,7 @@
             </mat-card>
         </div>
         <div class="col-md-3 ">
+           
             <mat-card class="padding">
                 <mat-card-content>
                     <ng-select class="custom" [items]="timeOptions" placeholder="Duration"
@@ -116,10 +120,12 @@
         </div>
 
         <div class="col-md-8 mpadding" style="height: 90vh;">
+             
             <mat-card style="height: 47vh;">
               <mat-card-content>
+                <ngx-ui-loader [loaderId]="'individual_graph_ems'"></ngx-ui-loader>
                 <div class="col-md-12 graph-container" #individual_graph>
-                    
+              
                 </div>
               </mat-card-content>
             </mat-card>

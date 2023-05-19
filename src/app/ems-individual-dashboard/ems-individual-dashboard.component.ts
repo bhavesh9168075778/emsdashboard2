@@ -127,6 +127,7 @@ export class EmsIndividualDashboardComponent implements OnInit {
   constructor(private ngxLoader: NgxUiLoaderService, private deviceManagerSer: DeviceMasterService, private transMngSer: TransformerManagerService, private matDialog: MatDialog, private EmsdashboardService: EmsdashboardService) { }
 
   ngOnInit() {
+    this.ngxLoader.startLoader('individual_graph');
     this.getDeiceIds();
   }
   getDeiceIds() {
@@ -229,6 +230,8 @@ export class EmsIndividualDashboardComponent implements OnInit {
             this.pf = 0;
           }
           this.energyre_co_lo_graph();
+          this.ngxLoader.stopLoader('individual_graph');
+        
         });
   }
 
@@ -285,6 +288,7 @@ export class EmsIndividualDashboardComponent implements OnInit {
 
 
   filter(type, param, event) {
+    this.ngxLoader.startLoader('individual_graph_ems');
     console.log("qqqqqwertyuiopojkhbfvsdvsdvvghghgfhvgvbvjvjygjv", type, param, event)
     this.jsonArray = [];
     if (type == "DeviceID") {
@@ -321,13 +325,15 @@ export class EmsIndividualDashboardComponent implements OnInit {
           }
           console.log("poiuyhjmmvbmvmvnmvnmvnmvnbjghjgjgk", this.jsonArray);
           this.updateGraphData(this.jsonArray);
-
+          this.ngxLoader.stopLoader('individual_graph_ems');
 
 
         });
       });
     }
     if (type == "energyMeter") {
+      this.ngxLoader.startLoader('individual_graph_ems');
+  
       this.jsonArray = [];
       this.selectedEnergyMeter = param;
       let meterid = param;
@@ -352,10 +358,12 @@ export class EmsIndividualDashboardComponent implements OnInit {
           }
           this.updateGraphData(jsonArray);
         this.getmonthdetail(param);
-
+        this.ngxLoader.stopLoader('individual_graph_ems');
       });
     }
     if (type == "parameter") {
+      this.ngxLoader.startLoader('individual_graph_ems');
+  
       this.jsonArray = [];
       this.selectedParameter = param;
         for (let i = 0; i < this.allData.length; i++) {
@@ -369,10 +377,11 @@ export class EmsIndividualDashboardComponent implements OnInit {
         }
         }
         this.updateGraphData(this.jsonArray);
-        
+        this.ngxLoader.stopLoader('individual_graph_ems');
     }
     if (type == "date") {
-
+      this.ngxLoader.startLoader('individual_graph_ems');
+  
       console.log("from date selected parameter", this.selectedParameter)
       this.selectedTimeDuration = param;
       let duration;
@@ -436,7 +445,7 @@ export class EmsIndividualDashboardComponent implements OnInit {
           }
 
           this.updateGraphData(this.jsonArray);
-
+          this.ngxLoader.stopLoader('individual_graph_ems');
         });
       }
     }
