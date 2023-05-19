@@ -1,0 +1,107 @@
+<ngx-ui-loader [loaderId]="'demandtrend'"></ngx-ui-loader>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-card>
+                        <mat-card-content>
+                            <div class="row">
+                                <div class="col-sm-4 col-md-2">
+                                    <ng-select [items]="countryList" bindLabel="name" placeholder="Country"
+                                        [(ngModel)]="selectedCountry" (change)="countrySelection()" [clearable]="false">
+                                    </ng-select>
+                                </div>
+                                <div class="col-sm-4 col-md-2">
+                                    <ng-select [items]="stateList" bindLabel="name" placeholder="State"
+                                        [(ngModel)]="selectedState" (change)="stateSelection()">
+                                    </ng-select>
+                                </div>
+                                <div class="col-sm-4 col-md-2">
+                                    <ng-select [items]="cityList" bindLabel="name" placeholder="City"
+                                        [(ngModel)]="selectedCity" (change)="citySelection()">
+                                    </ng-select>
+                                </div>
+                                <div class="col-sm-4 col-md-2">
+                                    <ng-select [items]="zoneList" bindLabel="name" placeholder="Zone"
+                                        [(ngModel)]="selectedZone" (change)="zoneSelection()">
+                                    </ng-select>
+                                </div>
+                                <div class="col-sm-4 col-md-2">
+                                    <ng-select [items]="locationList" bindLabel="name" placeholder="Location"
+                                        [(ngModel)]="selectedLocation" (change)="locationSelection()">
+                                    </ng-select>
+                                </div>
+                                <div class="col-sm-4 col-md-2">
+                                    <ng-select [items]="parameterList" bindLabel="name" placeholder="Parameter"
+                                        [(ngModel)]="selectedParameter" [readonly]="true">
+                                    </ng-select>
+                                </div>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-card>
+                        <mat-card-content>
+                            <p><b>DEMAND KW</b></p>
+                            <hr>
+                            <div class="row">
+                                <div [ngClass]="{' offset-md-7 col-md-3' : showDateRange == true,
+                                'offset-md-10 col-md-2' : showDateRange == false}">
+                                    <ng-select [items]="durationList" bindLabel="name" placeholder="Duration"
+                                        [(ngModel)]="selectedDuration"
+                                        (change)="durationSelectionAlert(selectedDuration)" [clearable]="false">
+                                    </ng-select>
+                                </div>
+                                <div *ngIf="showDateRange" style="padding-top: 20px" [ngClass]="{'col-md-2' : showDateRange == true}">
+                                    <input [owlDateTime]="dt1" [selectMode]="'range'" [owlDateTimeTrigger]="dt1"
+                                        placeholder="Select Date Range" (dateTimeChange)="changeDateRange($event)">
+                                    <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                                </div>
+                            </div>
+                            <ngx-ui-loader [loaderId]="'demand-trendgraph'"></ngx-ui-loader>
+                            <span *ngIf="data.length > 0">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <plotly-plot [data]="data" [layout]="graph.layout" [config]="graph.config"
+                                            [useResizeHandler]="true">
+                                        </plotly-plot>
+                                    </div>
+                                </div><br>
+                                <div class="row col-md-5">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Transformer</th>
+                                                <th>Min</th>
+                                                <th>Max</th>
+                                                <th>Avg</th>
+                                                <th>Range</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let data of data">
+                                                <td>{{data?.name}}</td>
+                                                <td>{{data?.min | number:'1.2-3'}}</td>
+                                                <td>{{data?.max | number:'1.2-3'}}</td>
+                                                <td>{{data?.avg | number:'1.2-3'}}</td>
+                                                <td>{{data?.range | number:'1.2-3'}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </span>
+                            <div *ngIf="data && data.length == 0">
+                                <p class="text-danger">*Note: </p>
+                                <p class="alert alert-warning">No data to show results!</p>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

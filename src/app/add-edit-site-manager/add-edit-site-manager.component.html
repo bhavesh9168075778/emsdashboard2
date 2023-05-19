@@ -1,0 +1,204 @@
+<h2 mat-dialog-title *ngIf="data && data.type === 'add'">Add Site</h2>
+<h2 mat-dialog-title *ngIf="data && data.type === 'edit'">Edit Site</h2>
+<ngx-ui-loader [loaderId]="'add-edit-site'"></ngx-ui-loader>
+<form [formGroup]="form" (ngSubmit)="submit(form)">
+    <mat-dialog-content>
+        <div class="row col-md-12">
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input type="text" matInput placeholder="Name" formControlName="name" required>
+            </mat-form-field>
+            <span class="error" *ngIf="form.controls.name.touched && form.controls.name.errors?.required">
+                Please Enter Name
+            </span>
+            <span class="error" *ngIf="form.controls.name.touched && form.controls.name.errors?.maxlength">
+                Name cannot exceed 100 characters
+            </span>
+        </div>
+        <div *ngIf="data.currentUserData.dashboard == 2; else transformer" class="row col-md-12">
+            <mat-form-field>
+                <mat-label>Device</mat-label>
+                <mat-select formControlName="transformer" required>
+                    <mat-option *ngFor="let energyMeter of transformerList" [value]="energyMeter">{{energyMeter.deviceid}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <span class="form-text error"
+                *ngIf="form.controls.transformer.touched && form.controls.transformer.errors?.required">
+                Please Select Energy Meter
+            </span>
+        </div>
+        <ng-template #transformer>
+            <div class="row col-md-12">
+                <mat-form-field>
+                    <mat-label>Transformer</mat-label>
+                    <mat-select formControlName="transformer" required>
+                        <mat-option *ngFor="let transformer of transformerList" [value]="transformer">{{transformer.id}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <span class="form-text error"
+                    *ngIf="form.controls.transformer.touched && form.controls.transformer.errors?.required">
+                    Please Select transformer
+                </span>
+            </div>
+        </ng-template>
+        <div class="row col-md-12">
+            <mat-form-field>
+                <mat-label>Assigned To</mat-label>
+                <mat-select formControlName="assignedto" (selectionChange)="assignedtoSelection($event.value)" required>
+                    <mat-option *ngFor="let assignedto of assignedtoList" [value]="assignedto">{{assignedto.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <span class="form-text error"
+                *ngIf="form.controls.assignedto.touched && form.controls.assignedto.errors?.required">
+                Please Select Assigned To
+            </span>
+        </div>
+        <div class="row col-md-12" *ngIf="showUserAdmin">
+            <mat-form-field>
+                <mat-label>Select User Admin</mat-label>
+                <mat-select formControlName="useradmin" (selectionChange)="userAdminSelection($event.value)" [disabled]="disableUserAdminflag" required>
+                    <mat-option *ngFor="let useradmin of useradminList" [value]="useradmin">{{useradmin.useradminname}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <span class="form-text error"
+                *ngIf="form.controls.assignedto.touched && form.controls.assignedto.errors?.required">
+                Please Select User Admin
+            </span>
+        </div>
+        <div class="row col-md-12" *ngIf="showUser">
+            <mat-form-field>
+                <mat-label>User</mat-label>
+                <mat-select formControlName="user">
+                    <mat-option *ngFor="let user of userListData" [value]="user">{{user.first_name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <span class="form-text error" *ngIf="form.controls.user.touched && form.controls.user.errors?.required">
+                Please Select User
+            </span>
+        </div>
+        <div class="row col-md-12">
+            <mat-form-field>
+                <mat-label>Country</mat-label>
+                <mat-select formControlName="country" (selectionChange)="countrySelection($event.value)" required>
+                    <mat-option *ngFor="let country of countryList" [value]="country">{{country.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <span class="form-text error"
+                *ngIf="form.controls.country.touched && form.controls.country.errors?.required">
+                Please Select Country
+            </span>
+        </div>
+        <div class="row col-md-12">
+            <mat-form-field>
+                <mat-label>State</mat-label>
+                <mat-select formControlName="state" (selectionChange)="stateSelection($event.value)" required>
+                    <mat-option *ngFor="let state of stateList" [value]="state">{{state.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <span class="form-text error" *ngIf="form.controls.state.touched && form.controls.state.errors?.required">
+                Please Select State
+            </span>
+        </div>
+        <div class="row col-md-12">
+            <mat-form-field>
+                <mat-label>City</mat-label>
+                <mat-select formControlName="city" (selectionChange)="citySelection($event.value)" required>
+                    <mat-option *ngFor="let city of cityList" [value]="city">{{city.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <span class="form-text error" *ngIf="form.controls.city.touched && form.controls.city.errors?.required">
+                Please Select City
+            </span>
+        </div>
+        <div class="row col-md-12" *ngIf="!isnewZone">
+            <mat-form-field style="width:70%">
+                <mat-label>Zone</mat-label>
+                <mat-select formControlName="zone" [(ngModel)]="selectedZone"
+                    (selectionChange)="zoneSelection($event.value)">
+                    <mat-option *ngFor="let zone of zoneList" [value]="zone">{{zone.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button mat-button type="button" (click)="addZone()"><i class="fa fa-plus fa-2x"></i></button>
+            <span class="form-text error" *ngIf="form.controls.zone.touched && form.controls.zone.errors?.required">
+                Please Select Zone
+            </span>
+        </div>
+        <div class="row col-md-12" *ngIf="isnewZone">
+            <mat-form-field style="width:70%">
+                <mat-label>Zone</mat-label>
+                <input type="text" matInput placeholder="Zone" formControlName="zonetext">
+            </mat-form-field>
+            <button mat-button type="button" (click)="removeZone()"><i class="fa fa-minus fa-2x"></i></button>
+            <span class="error" *ngIf="form.controls.zonetext.touched && form.controls.zonetext.errors?.required">
+                Please Enter Zone
+            </span>
+            <span class="error" *ngIf="form.controls.zonetext.touched && form.controls.zonetext.errors?.maxlength">
+                Zone cannot exceed 100 characters
+            </span>
+        </div>
+        <div class="row col-md-12" *ngIf="!isnewLocation">
+            <mat-form-field style="width:70%">
+                <mat-label>Location</mat-label>
+                <mat-select formControlName="location" [(ngModel)]="selectedLocation">
+                    <mat-option *ngFor="let location of locationList" [value]="location">{{location.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button mat-button type="button" (click)="addLocation()"><i class="fa fa-plus fa-2x"></i></button>
+            <span class="form-text error"
+                *ngIf="form.controls.location.touched && form.controls.location.errors?.required">
+                Please Select Location
+            </span>
+        </div>
+        <div class="row col-md-12" *ngIf="isnewLocation">
+            <mat-form-field style="width:70%">
+                <mat-label>Location</mat-label>
+                <input type="text" matInput placeholder="Location" formControlName="locationtext">
+            </mat-form-field>
+            <button mat-button type="button" (click)="removeLocation()"><i class="fa fa-minus fa-2x"></i></button>
+            <span class="error"
+                *ngIf="form.controls.locationtext.touched && form.controls.locationtext.errors?.required">
+                Please Enter Location
+            </span>
+            <span class="error" *ngIf="form.controls.locationtext.touched && form.controls.locationtext.errors?.maxlength">
+                Location cannot exceed 100 characters
+            </span>
+        </div>
+        <div class="row col-md-12">
+            <mat-form-field>
+                <mat-label>Latitude</mat-label>
+                <input type="text" matInput placeholder="Latitude" formControlName="latitude" required>
+            </mat-form-field>
+            <span class="error" *ngIf="form.controls.latitude.touched && form.controls.latitude.errors?.required">
+                Please Enter Latitude
+            </span>
+        </div>
+        <div class="row col-md-12">
+            <mat-form-field>
+                <mat-label>Longitude</mat-label>
+                <input type="text" matInput placeholder="Longitude" formControlName="longitude" required>
+            </mat-form-field>
+            <span class="error" *ngIf="form.controls.longitude.touched && form.controls.longitude.errors?.required">
+                Please Enter Longitude
+            </span>
+        </div>
+        <div class="row col-md-12">
+            <mat-form-field>
+                <mat-label>Per unit cost</mat-label>
+                <input type="text" matInput placeholder="cost" formControlName="cost" required>
+            </mat-form-field>
+            <span class="error" *ngIf="form.controls.cost.touched && form.controls.cost.errors?.required">
+                Please Enter cost per unit
+            </span>
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button class="mat-raised-button" type="button" (click)="close()">Close</button>
+        <button class="mat-raised-button mat-primary" [disabled]="!form.valid">Save</button>
+    </mat-dialog-actions>
+</form>

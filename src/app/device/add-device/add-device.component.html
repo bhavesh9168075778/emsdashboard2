@@ -1,0 +1,124 @@
+<h2 mat-dialog-title>Add Device</h2>
+<h2 mat-dialog-title *ngIf="data && data.type === 'add'">Add</h2>
+<h2 mat-dialog-title *ngIf="data && data.type === 'edit'">Edit</h2>
+    <ngx-ui-loader [loaderId]="'add-edit-user'"></ngx-ui-loader>
+    <div class="form-container scrollbar scrollbar-primary"  >
+<form [formGroup]="deviceForm" class="form">
+    <div class="col-md-12">
+    <mat-dialog-content>
+        <div class="row col-md-12">
+            <mat-form-field style="width: 100%;">
+                <mat-label>Device Id</mat-label>
+               
+                <input type="text" matInput placeholder="Device ID Name" formControlName="deviceId" required [readonly]="readOnly">
+            </mat-form-field>
+            <span class="error" *ngIf="deviceForm.controls.deviceId.touched && deviceForm.controls.deviceId.errors?.required">
+                Please Enter Device ID
+            </span>
+        </div>
+        <div class="row col-md-12">
+            <mat-form-field style="width: 100%;">
+                <mat-label>Device Model</mat-label>
+                <input type="text" matInput placeholder="Device Model" formControlName="deviceModel">
+            </mat-form-field>
+            <span class="error" *ngIf="deviceForm.controls.deviceModel.touched && deviceForm.controls.deviceModel.errors?.required">
+                Please Enter Device Model
+            </span>
+        </div>
+        <div class="row col-md-12">
+            <mat-form-field style="width: 100%;">
+                <mat-label>Device Category</mat-label>
+                <input type="text" matInput placeholder="Device Category" formControlName="deviceCategory" required>
+            </mat-form-field>
+            <span class="form-text error" *ngIf="deviceForm.controls.deviceCategory.touched && deviceForm.controls.deviceCategory.errors?.required">
+                Please Enter Device Category
+            </span>
+           
+        </div>
+        <!-- <div class="row col-md-12">
+            <mat-form-field style="width: 100%;">
+                <mat-label>Version</mat-label>
+                <input type="text" matInput placeholder="Version" formControlName="version" required>
+            </mat-form-field>
+            <span class="form-text error"
+                *ngIf="deviceForm.controls.version.touched && deviceForm.controls.version.errors?.required">
+                Please Enter Version
+            </span>
+        </div> -->
+        <div class="row col-md-12">
+            <mat-form-field style="width: 100%;">
+                <mat-label>Firmware Version</mat-label>
+                <input type="text" matInput placeholder="Firmware Version" formControlName="firmwareversion" required>
+            </mat-form-field>
+            <span class="form-text error"
+                *ngIf="deviceForm.controls.firmwareversion.touched && deviceForm.controls.firmwareversion.errors?.required">
+                Please Enter Firmware Version
+            </span>
+        </div>
+        <div class="row col-md-12">
+            <mat-form-field style="width: 100%;">
+                <mat-label>Hardware Version</mat-label>
+                <input type="text" matInput placeholder="Hardware Version" formControlName="hardwareversion" required>
+            </mat-form-field>
+            <span class="form-text error"
+                *ngIf="deviceForm.controls.hardwareversion.touched && deviceForm.controls.hardwareversion.errors?.required">
+                Please Enter Hardware Version
+            </span>
+        </div>
+        <div class="row col-md-12">
+            <mat-form-field style="width: 100%;">
+                <mat-label>Passcode</mat-label>
+                <input matInput type="text" placeholder="Passcode" formControlName="passcode"
+                    required>
+               
+            </mat-form-field>
+            <span class="form-text error"
+                *ngIf="deviceForm.controls.passcode.touched && deviceForm.controls.passcode.errors?.required">
+                Please Enter Passcode
+            </span>
+        </div>
+    
+        <hr>
+        <h5>Update Device Firmware</h5>
+        <hr>
+        <div class="file-upload row" >
+            <div class="col-md-3">
+            <b>Select CRC</b>
+            </div>
+            <div class="col-md-5">
+            <input type="file" name="image" ng2FileSelect [uploader]="uploader" accept="text/plain" />
+            </div>
+            <div class="col-md-4">
+            <button  class="fa fa-upload" style="width: 50%;color:rgb(220, 111, 9)" type="button" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+            </button>
+            <button  class="fa fa-download" style="width: 50%;color:rgb(33, 160, 33)" type="button" (click)="DownloadCRC(deviceForm.controls.deviceId.value)">
+              </button>
+              </div>
+          </div>
+          <br>
+          <div class="file-upload row">
+              <div class="col-md-3">
+              <b>Select&nbsp;Firmware</b>
+            </div>
+            <div class="col-md-5">
+            <input type="file" name="image" ng2FileSelect [uploader]="firmwareUploader" accept=".bin" /></div>
+            <div class="col-md-4">
+            <button class="fa fa-upload" style="width: 50%;color:rgb(220, 111, 9)" type="button" (click)="firmwareUploader.uploadAll()" [disabled]="!firmwareUploader.getNotUploadedItems().length">
+              
+            </button>
+           
+            <button class="fa fa-download" style="width: 50%; color:green;" type="button" (click)="downloadFrimware(deviceForm.controls.deviceId.value)">
+              </button>
+              </div>
+          </div>
+          <hr>
+          <br>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button class="mat-raised-button" type="button" (click)="close('NA')">Close</button>
+        <button class="mat-raised-button mat-primary" [disabled]="!deviceForm.valid" (click)="onSubmit(deviceForm.value)">Save</button>
+    </mat-dialog-actions>
+</div>
+</form>
+</div>

@@ -1,0 +1,681 @@
+<ngx-ui-loader></ngx-ui-loader>
+<h2 mat-dialog-title>Add Energy Meter</h2>
+
+<mat-tab-group >
+    <mat-tab label="Description">
+        <div >
+
+                <form [formGroup]="descriptionForm" (ngSubmit)="onSubmit(descriptionForm.value, parameters.value,altertNotification.value,  alertParameter.value, dtmuDevice.value)" >
+
+                        <div class="row col-md-12">
+
+
+                            <mat-form-field>
+                                <mat-label>Meter Description</mat-label>
+                                <input matInput formControlName="meterDescription" required>
+
+                            </mat-form-field>
+                            <span class="error"
+                            *ngIf="descriptionForm.controls.meterDescription.touched && descriptionForm.controls.meterDescription.errors?.required">
+                           Please Enter Meter Description
+                        </span>
+
+                        </div>
+
+                        <div class="row col-md-12">
+
+
+                            <mat-form-field >
+                                <mat-label>Meter Name*</mat-label>
+                                <input matInput formControlName="meterName">
+
+                            </mat-form-field>
+                            <span class="error"
+                            *ngIf="descriptionForm.controls.meterName.touched && descriptionForm.controls.meterName.errors?.required">
+                           Please Enter Meter Name
+                        </span>
+                        </div>
+
+
+                        <div class="row col-md-12">
+
+
+                            <mat-form-field >
+                                <mat-label>Meter Model*</mat-label>
+                                <input matInput formControlName="meterModel">
+
+                            </mat-form-field>
+                            <span class="error"
+                            *ngIf="descriptionForm.controls.meterModel.touched && descriptionForm.controls.meterModel.errors?.required">
+                           Please Enter Meter model
+                        </span>
+                        </div>
+
+                        <div class="row col-md-12">
+
+
+                            <mat-form-field type="datetime"  >
+                                <mat-label>Installation Date*</mat-label>
+                                <input matInput [matDatepicker]="picker1" formControlName="installationDate">
+                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+
+                            </mat-form-field>
+                            <span class=" error"
+                            *ngIf="descriptionForm.controls.installationDate.touched && descriptionForm.controls.installationDate.errors?.required">
+                           Please Enter Installation Date
+                        </span>
+
+                    </div>
+
+                        <div class="row col-md-12">
+
+
+                            <mat-form-field  >
+                                <mat-label>Manufacturer</mat-label>
+                                <input matInput formControlName="manufacturer">
+
+                            </mat-form-field>
+                            <span class=" error"
+                            *ngIf="descriptionForm.controls.manufacturer.touched && descriptionForm.controls.manufacturer.errors?.required">
+                           Please Enter Current Meter Reading KWh
+                        </span>
+
+                    </div>
+                    <div class="row col-md-12">
+
+
+                        <mat-form-field  >
+                            <mat-label>Meter Serial Number*</mat-label>
+                            <input matInput formControlName="meterSerialNumber">
+
+                        </mat-form-field>
+                        <span class=" error"
+                        *ngIf="descriptionForm.controls.meterSerialNumber.touched && descriptionForm.controls.meterSerialNumber.errors?.required">
+                       Please EnterMeter Serial Number
+                    </span>
+
+                </div>
+
+                       
+
+                        <div class="row col-md-12">
+
+
+                            <mat-form-field  >
+                                <mat-label>CT Ratio*</mat-label>
+                                <input matInput formControlName="ctratio">
+
+                            </mat-form-field>
+                            <span class=" error"
+                            *ngIf="descriptionForm.controls.ctratio.touched && descriptionForm.controls.ctratio.errors?.required">
+                           Please Enter CT Ratio
+                        </span>
+
+                    </div>
+
+                        <div class="row col-md-12">
+
+
+                            <mat-form-field  >
+                                <mat-label>PT Ratio*</mat-label>
+                                <input matInput formControlName="ptratio">
+
+                            </mat-form-field>
+                            <span class=" error"
+                            *ngIf="descriptionForm.controls.ptratio.touched && descriptionForm.controls.ptratio.errors?.required">
+                           Please Enter PT Ratio
+                        </span>
+
+                    </div>
+
+                        <div class="row col-md-12">
+
+
+                            <mat-form-field  >
+                                <mat-label>Asset Description*</mat-label>
+                                <input matInput formControlName="assetDescription">
+
+                            </mat-form-field>
+                            <span class=" error"
+                            *ngIf="descriptionForm.controls.assetDescription.touched && descriptionForm.controls.assetDescription.errors?.required">
+                           Please Enter Asset Description
+                        </span>
+
+                    </div>
+                    <div class="row col-md-12">
+
+
+                        <mat-form-field  >
+                            <mat-label>Asset Name*</mat-label>
+                            <input matInput formControlName="assetName">
+
+                        </mat-form-field>
+                        <span class=" error"
+                        *ngIf="descriptionForm.controls.assetName.touched && descriptionForm.controls.assetName.errors?.required">
+                       Please Enter Asset Name
+                    </span>
+
+                </div>
+                <div class="row col-md-12">
+
+
+                        <mat-form-field  >
+                            <mat-label>Asset Model*</mat-label>
+                            <input matInput formControlName="assetModel">
+
+                        </mat-form-field>
+                        <span class=" error"
+                        *ngIf="descriptionForm.controls.assetModel.touched && descriptionForm.controls.assetModel.errors?.required">
+                    Please Enter Asset Model
+                    </span>
+
+                </div>
+                <div class="row col-md-12">
+
+
+                        <mat-form-field  >
+                            <mat-label>Asset Manufacturer*</mat-label>
+                            <input matInput formControlName="assetManufacturer">
+
+                        </mat-form-field>
+                        <span class=" error"
+                        *ngIf="descriptionForm.controls.assetManufacturer.touched && descriptionForm.controls.assetManufacturer.errors?.required">
+                    Please Enter Asset Manufacturer
+                    </span>
+
+                </div>
+                <div class="row col-md-12">
+
+
+                        <mat-form-field  >
+                            <mat-label>Asset Serial Number*</mat-label>
+                            <input matInput formControlName="assetSerialNumber">
+
+                        </mat-form-field>
+                        <span class=" error"
+                        *ngIf="descriptionForm.controls.assetSerialNumber.touched && descriptionForm.controls.assetSerialNumber.errors?.required">
+                    Please Enter Asset Serial Number
+                    </span>
+
+                </div>
+                <div class="row col-md-12">
+
+
+                        <mat-form-field  >
+                            <mat-label>Asset Rated current*</mat-label>
+                            <input matInput formControlName="assetRatedCurrent">
+
+                        </mat-form-field>
+                        <span class=" error"
+                        *ngIf="descriptionForm.controls.assetRatedCurrent.touched && descriptionForm.controls.assetRatedCurrent.errors?.required">
+                    Please Enter Asset Rated currrent
+                    </span>
+
+                </div>
+
+                </form>
+
+        </div>
+        <br>
+    </mat-tab>
+    <mat-tab *ngIf="userId == 1 "  label="Parameters">
+
+            <form [formGroup]="parameters">
+
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <mat-card-title>
+                 <h4>Parameters</h4>
+                </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="scrollbar scrollbar-primary"  >
+                        <div class="col-md-12" id="test">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>L1</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-slide-toggle  formControlName="L1"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>L2</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-slide-toggle  formControlName="L2"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>L3</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-slide-toggle  formControlName="L3"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>3 Phase Active Power</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-slide-toggle  formControlName="activepower"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>3 Phase Reactive Power</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-slide-toggle  formControlName="reactivepower"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>3 Phase Apparent  Power</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-slide-toggle  formControlName="apparentpower"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>PF</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-slide-toggle  formControlName="pf"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>System kvArh I</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-slide-toggle  formControlName="kvArhI"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>System kvArh E</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-slide-toggle  formControlName="kvArhE"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>System kvAh</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-slide-toggle  formControlName="kvAh"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>KWH</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-slide-toggle formControlName="kwh"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Latest KWH</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-slide-toggle formControlName="latestkwh"></mat-slide-toggle>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+                </form>
+    </mat-tab>
+   
+    <mat-tab label="Alert Parameters">
+        <form [formGroup]="alertParameter" >
+                    <h4>Alert Parameters</h4>
+            <div class="row">
+                    <table>
+                        <tr>
+                                <td>
+                                        <mat-form-field class="form-element" style="margin-left: 15%;">
+
+                                            <mat-label>Frequency</mat-label>
+                                            <input type="number" matInput (keyup)= "checkFrequency($event,'apLowPowerfactorFrequency','apOverloadTime')" formControlName = "apLowPowerfactorFrequency" >
+
+                                        </mat-form-field>
+                                        <span class="error"
+                                        *ngIf="frequencyMsg && frequencyMsg.apLowPowerfactorFrequency && frequencyMsg.apLowPowerfactorFrequency.length > 0">
+                                      {{frequencyMsg.apLowPowerfactorFrequency}}
+                                    </span>
+
+
+                                    </td>
+                                    <td>
+                                            <mat-label>Minutes</mat-label>
+                                    </td>
+                        </tr>
+                            
+            </table>
+            </div>
+            <div class="row">
+                <table>
+                    <tr>
+                        <td>
+                            <mat-form-field style="margin-left: 15%;" >
+                                <mat-label>Low Power Factor</mat-label>
+                                <input type="number" matInput formControlName="apLowPowerfactor">
+
+                            </mat-form-field>
+                            <span class=" error"
+                        *ngIf="alertParameter.controls.apLowPowerfactor.touched && alertParameter.controls.apLowPowerfactor.errors?.required">
+                       Please Enter Low Power Factor
+                    </span>
+                        </td>
+                        <td>
+                            <mat-label>Email</mat-label>
+                            <mat-slide-toggle formControlName = 'apLowPowerfactorEmail'></mat-slide-toggle>
+                        </td>
+                        <td>
+                            <mat-label>SMS</mat-label>
+                            <mat-slide-toggle formControlName = 'apLowPowerfactorSms'></mat-slide-toggle>
+                        </td>
+                        <td>
+                            <mat-form-field class="form-element" hidden=true>
+                                <mat-label>Frequency</mat-label>
+                                <input type="number" (keyup)= "checkFrequency($event,'apLowPowerfactorFrequency','apLowPowerfactorTime')" matInput formControlName = 'apLowPowerfactorFrequency'>
+                            </mat-form-field>
+                            <span class="error"
+                            *ngIf="frequencyMsg && frequencyMsg.apLowPowerfactorFrequency && frequencyMsg.apLowPowerfactorFrequency.length > 0">
+                          {{frequencyMsg.apLowPowerfactorFrequency}}
+                        </span>
+
+                        </td>
+                        <td>
+                            <mat-form-field class="form-element" hidden=true>
+                                <mat-label>Time</mat-label>
+                            <mat-select   formControlName = 'apLowPowerfactorTime'>
+                                <mat-option  *ngFor="let freq9 of Frequency" [value]="freq9">
+                                    {{freq9}}
+                                  </mat-option>
+                              </mat-select>
+                              </mat-form-field>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        <!-- </mat-card-content>
+        </mat-card> -->
+        </form>
+    </mat-tab>
+
+        <mat-tab label="Alert Notification">
+            <form [formGroup]="altertNotification"  class="form">
+                <!-- <mat-card wi>
+                    <mat-card-header>
+                        <mat-card-title>
+                     <h4>Email for Alarms</h4>
+                    </mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content> -->
+                <h4>Email for Alarms</h4>
+                <div class="row col-md-12">
+
+
+
+                        <mat-form-field  >
+                             <mat-label>Email 1</mat-label>
+                            <input matInput formControlName="email1" required>
+
+                        </mat-form-field>
+                        <span class=" error"
+                        *ngIf="altertNotification.controls.email1.touched && altertNotification.controls.email1.errors?.required">
+                       Please Enter Email 1
+                    </span>
+                    <span class="error"
+                        *ngIf="altertNotification.controls.email1.touched && altertNotification.controls.email1.errors?.email">
+                       Please Enter Valid Email
+                    </span>
+
+                </div>
+                <div class="row col-md-12">
+
+                        <mat-form-field  >
+                            <mat-label>Email 2</mat-label>
+                            <input matInput formControlName="email2">
+
+                        </mat-form-field>
+                        <span class="error"
+                        *ngIf="altertNotification.controls.email2.touched && altertNotification.controls.email2.errors?.email">
+                       Please Enter Valid Email
+                    </span>
+                </div>
+
+                    <div class="row col-md-12">
+
+                        <mat-form-field  >
+                            <mat-label>Email 3</mat-label>
+                            <input matInput formControlName="email3">
+
+                        </mat-form-field>
+                        <span class="error"
+                        *ngIf="altertNotification.controls.email3.touched && altertNotification.controls.email3.errors?.email">
+                       Please Enter Valid Email
+                    </span>
+                    </div>
+
+                <div class="row col-md-12">
+
+
+                        <mat-form-field   >
+                            <mat-label>Email 4</mat-label>
+                            <input matInput formControlName="email4">
+
+                        </mat-form-field>
+                        <span class="error"
+                        *ngIf="altertNotification.controls.email4.touched && altertNotification.controls.email4.errors?.email">
+                       Please Enter Valid Email
+                    </span>
+                </div>
+                <div class="row col-md-12">
+
+
+                        <mat-form-field   >
+                            <mat-label>Email 5</mat-label>
+                            <input matInput formControlName="email5">
+
+                        </mat-form-field>
+                        <span class="error"
+                        *ngIf="altertNotification.controls.email5.touched && altertNotification.controls.email5.errors?.email">
+                       Please Enter Valid Email
+                    </span>
+
+                </div>
+
+                <h4>SMS For Alarms</h4>
+
+                <div class="row col-md-12">
+
+                        <mat-form-field   >
+                            <mat-label>Phone Number 1</mat-label>
+                            <input matInput formControlName="phoneNo1" required>
+
+                        </mat-form-field>
+                        <span class="error"
+                        *ngIf="altertNotification.controls.phoneNo1.touched && altertNotification.controls.phoneNo1.errors?.required">
+                       Please Enter Phone Number 1
+                    </span>
+                    <span class="error"
+                        *ngIf="altertNotification.controls.phoneNo1.touched && altertNotification.controls.phoneNo1.errors?.pattern">
+                       Please Enter Valid Phone Number 1
+                    </span>
+
+                </div>
+                <div class="row col-md-12">
+
+                        <mat-form-field   >
+                            <mat-label>Phone Number 2</mat-label>
+                            <input matInput formControlName="phoneNo2">
+
+                        </mat-form-field>
+                        <span class="error"
+                        *ngIf="altertNotification.controls.phoneNo2.touched && altertNotification.controls.phoneNo2.errors?.pattern">
+                       Please Enter Valid Phone Number 2
+                    </span>
+
+                </div>
+                <div class="row col-md-12">
+
+                        <mat-form-field  >
+                            <mat-label>Phone Number 3</mat-label>
+                            <input matInput formControlName="phoneNo3">
+
+                        </mat-form-field>
+                        <span class="error"
+                        *ngIf="altertNotification.controls.phoneNo3.touched && altertNotification.controls.phoneNo3.errors?.pattern">
+                       Please Enter Valid Phone Number 3
+                    </span>
+                </div>
+                <div class="row col-md-12">
+
+                        <mat-form-field   >
+                            <mat-label>Phone Number 4</mat-label>
+                            <input matInput formControlName="phoneNo4">
+
+                        </mat-form-field>
+                        <span class="error"
+                        *ngIf="altertNotification.controls.phoneNo4.touched && altertNotification.controls.phoneNo4.errors?.pattern">
+                       Please Enter Valid Phone Number 4
+                    </span>
+
+                </div>
+                <div class="row col-md-12">
+
+
+
+                        <mat-form-field   >
+                            <mat-label>Phone Number 5</mat-label>
+                            <input matInput formControlName="phoneNo5">
+
+                        </mat-form-field>
+                        <span class="error"
+                        *ngIf="altertNotification.controls.phoneNo5.touched && altertNotification.controls.phoneNo5.errors?.pattern">
+                       Please Enter Valid Phone Number 5
+                    </span>
+
+                </div>
+            <!-- </mat-card-content>
+            </mat-card> -->
+            </form>
+
+    </mat-tab>
+    <mat-tab *ngIf="userId == 1" label="DTMU Device">
+        <form [formGroup]="dtmuDevice"  class="form">
+            <h4>New Machine Details</h4>
+            <div class="row col-md-12">
+
+                    <mat-form-field >
+                       <mat-label>Device Category*</mat-label>
+                        <mat-select   formControlName="deviceCategory">
+                            <mat-option  *ngFor="let category of deviceMaster.deviceCategory" [value]="category">
+                                {{category}}
+                              </mat-option>
+                          </mat-select>
+                    </mat-form-field>
+                    <span class="error"
+                    *ngIf="dtmuDevice.controls.deviceCategory.touched && dtmuDevice.controls.deviceCategory.errors?.required">
+                   Please Select Device Category
+                </span>
+
+            </div>
+            <div class="row col-md-12">
+
+                    <mat-form-field  >
+                        <mat-label>Device Model*</mat-label>
+                        <mat-select  formControlName="deviceModel" >
+                            <mat-option *ngFor='let model of deviceMaster.deviceModel' [value]="model">
+                                {{model}}
+                              </mat-option>
+                          </mat-select>
+
+                    </mat-form-field>
+
+            </div>
+            <div class="row col-md-12">
+
+                    <mat-form-field  >
+                        <mat-label>Device ID*</mat-label>
+                        <mat-select formControlName="deviceId">
+                            <!-- <mat-option *ngFor="let food of foods" [value]="food.value">
+                              {{food.viewValue}}
+                            </mat-option> -->
+                            <mat-option *ngFor='let deviceId of deviceMaster.deviceIds' [value]="deviceId">
+                                {{deviceId}}
+                              </mat-option>
+                          </mat-select>
+
+                    </mat-form-field>
+
+            </div>
+
+            <div class="row col-md-12">
+
+                    <mat-form-field  >
+                        <mat-label>Heart Beat*</mat-label>
+                            <input matInput formControlName="heartBeat">
+
+
+                    </mat-form-field>
+                    <span class="error"
+                    *ngIf="dtmuDevice.controls.heartBeat.touched && dtmuDevice.controls.heartBeat.errors?.required">
+                   Please Enter Heart Beat
+                </span>
+            </div>
+            <div class="row col-md-12">
+
+                    <mat-form-field  >
+                        <mat-label>Name*</mat-label>
+                        <input matInput formControlName="name">
+
+                    </mat-form-field>
+                    <span class="error"
+                    *ngIf="dtmuDevice.controls.name.touched && dtmuDevice.controls.name.errors?.required">
+                   Please Enter Name
+                </span>
+
+            </div>
+            <div class="row col-md-12">
+                    <mat-form-field >
+                        <mat-label>Passcode</mat-label>
+                        <input matInput formControlName="passcode">
+                    </mat-form-field>
+            </div>
+            <div class="row col-md-12">
+            <mat-label>Remote Controller</mat-label>
+                            <mat-slide-toggle formControlName = "remoteController"></mat-slide-toggle> 
+
+
+                    </div>
+                    <div class="row col-md-12">
+                        <mat-label>ON OFF Notify</mat-label>
+                        <mat-slide-toggle formControlName = "onoffNotify"></mat-slide-toggle> 
+                    </div>
+                   
+                    
+        </form>
+        
+    </mat-tab>
+</mat-tab-group>
+<mat-dialog-actions>
+    <div class="form-element">
+        <button mat-raised-button color="primary" type="submit" (click)="onSubmit(descriptionForm.value, parameters.value, alertParameter.value, altertNotification.value, dtmuDevice.value)" class="button" >Save</button>
+    </div>
+
+    <button class="mat-raised-button" (click)="close('NA')">Close</button>
+</mat-dialog-actions>
+<br>

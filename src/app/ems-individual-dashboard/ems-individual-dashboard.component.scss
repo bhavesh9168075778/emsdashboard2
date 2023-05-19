@@ -1,0 +1,248 @@
+.graph-container {
+  height: 100%;
+}
+
+.table-container {
+  max-height: 167px;
+  overflow-y: auto;
+}
+
+.example-container {
+  width: 100%;
+}
+
+.header-cell {
+  color: white;
+  background-color: #2196f3;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  text-align: center; /* Center align header values */
+  padding: 8px 16px;
+}
+
+
+.cell {
+  color: red; /* Cell text color */
+  padding: 8px 16px; /* Cell padding */
+}
+
+.header-row {
+  background-color: #e0e0e0; /* Header row background color */
+}
+
+.static-text {
+  color: red;
+  font-family: RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif;
+  font-size: 18px;
+}
+
+.ng-select.custom  ::ng-deep .ng-dropdown-panel  {            
+  min-height: 0px;
+  border-radius: 0;
+  background: #1F335A;
+}
+
+#chart {
+  padding: 0;
+  max-width: 650px;
+  margin: 35px auto;
+}
+.custom ::placeholder {
+ 
+  color: white;
+}
+
+.apexcharts-datalabel-label tspan:nth-child(2) {
+  fill: #888;
+}
+
+
+
+.mpadding{
+  padding: 1px;
+  height: 35vh;
+}
+.epaading{
+  padding: 0px;
+}
+
+.mat-card {
+  background-color: #1F335A;
+  
+  
+ 
+}
+.padding{
+  padding: 3px;
+  height: 8vh;
+  width: 102%;
+  margin-bottom: 1px;
+ 
+}
+.apexcharts-radialbar-series path {
+  stroke: red !important;
+}
+.container-fluid{
+  
+  resize: both;
+  overflow: auto;
+  padding-top: 2px;
+background-color: #1B1C30;
+color: white;
+height: 92vh;
+
+
+}
+.example-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+   
+  }
+
+  .mat-table {
+    overflow: auto;
+    width: 100%;
+    text-align: center;
+   
+  }
+  .container{
+      background-color: transparent;
+      border: 1.5px solid black;
+      border-radius: 10px;
+      text-align: center;
+  }
+  .mat-table{
+      background-color: transparent;
+      overflow: auto;   
+      width: 100%;
+  }
+  .mat-header-cell, .mat-cell {
+      min-width: 190px;
+      color:white;
+     
+  }
+  .mat-form-field-underline{
+      background-color:transparent;
+  }
+
+  .mat-form-field-flex{
+      font-size: 14px;
+      line-height: 1em;
+      color: #555;
+      background-image: none;
+      border: 1px solid ;
+      border-radius: 4px;
+      margin-top: 8px;
+      padding: 2px;
+  }
+  .mat-form-field-wrapper{
+      padding-bottom: 1.25em;
+      padding-top: 1.25em;
+  }
+  .mat-form-field-infix{
+      border:0px;
+  }
+  .mat-paginator{
+      background-color: transparent;
+      color: white;
+    }
+  
+  .mat-row, .mat-header-row {
+      min-width: 2800px;
+      width: 100%;
+    }
+ .shadows{
+    color: darkslateblue;
+    text-shadow: 3px -3px rgba(71, 61, 139, 0.568);
+ }
+ .text {
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-family: 'Russo One', sans-serif;
+    text-align: center;
+    
+    color: var(--text);
+ }
+  
+  span {
+    position: relative;
+    animation: jump 2.75s infinite;
+  }
+  
+  span:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+  
+  span:nth-child(3) {
+    animation-delay: 0.5s;
+  }
+  
+  span:nth-child(4) {
+    animation-delay: 0.7s;
+  }
+  
+  span:nth-child(5) {
+    animation-delay: 0.9s;
+  }
+  
+  @keyframes jump {
+    0% {
+      top: 0;
+    }
+    50% {
+      top: -10px;
+    }
+    100% {
+      top: 0;
+    }
+  }
+
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+.ng-select {
+    -webkit-text-fill-color: white ;
+    
+}
+
+
+
+table {
+  border-width: 1px; 
+  border: 1px solid white;
+  padding: 10px;
+  text-align: center;
+ 
+}
+table {
+  border-collapse: collapse;
+  text-align: center;
+}
+td, th {
+
+  margin-left: 5px;
+  border: 1px solid white;
+}

@@ -1,0 +1,84 @@
+form-container .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+    width: 100%;
+  
+  }
+  
+  .form-container .mat-form-field {
+    width: 220px;
+  
+  }
+  
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  .form-container form {
+    margin-bottom: 20px;
+  }
+  
+  .form-container form > * {
+    margin: 5px 0;
+  }
+  
+  .form-container .mat-radio-button {
+    margin: 0 12px;
+  }
+  
+  
+  
+  label {
+     
+     padding-right: 5%;
+     padding-top: 5%;
+     font-size: 14px;
+  }
+  
+  
+  #test ::ng-deep .mat-form-field-hide-placeholder .mat-form-field-label-wrapper {
+    text-align: center;
+    top: -25px;
+  }
+  
+  #test ::ng-deep .mat-form-field-should-float {
+    text-align: center;
+  }
+  
+  td {
+    padding-left: 2%;
+  }
+  
+  .example-card {
+    max-width:100%;
+    margin-top: 5%;
+  
+  }
+  
+  .alertP-card {
+    max-width:100%;
+    margin-top: 5%;
+    
+  }
+  
+  mat-form-field {
+    width: 100%;
+    margin-bottom: -0.50em;
+    line-height: 1.2em;
+    font-weight: 400;
+    font-size: inherit;
+    border-top: 0.84375em;
+    position: relative;
+  }
+  
+  mat-slide-toggle {
+    width: 100%;
+    margin-bottom: -0.50em;
+    line-height: 1.2em;
+    font-weight: 400;
+    font-size: inherit;
+    border-top: 0.84375em;
+    position: relative;
+  }
+  

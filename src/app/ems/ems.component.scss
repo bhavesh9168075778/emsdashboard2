@@ -1,0 +1,212 @@
+.graph-container {
+  height: 100%;
+}
+
+.table-container {
+  max-height: 202px;
+  overflow-y: auto;
+}
+
+.example-container {
+  width: 100%;
+}
+.mat-paginator{
+  background-color: transparent;
+  color: white;
+}
+.header-cell {
+  color: white;
+  background-color: #2196f3;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  text-align: center; /* Center align header values */
+  padding: 8px 16px;
+}
+
+
+.cell {
+  color: red; /* Cell text color */
+  padding: 8px 16px; /* Cell padding */
+}
+
+.header-row {
+  background-color: #e0e0e0; /* Header row background color */
+}
+
+.static-text {
+  color: red;
+  font-family: RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif;
+  font-size: 18px;
+}
+.graphpadding{
+  padding: 0px 0px 0px 0px;
+  height: 30vh;
+  margin-bottom: 1px;
+}
+.Mpadding{
+  padding: 1px;
+  height: 35vh;
+ 
+  margin-bottom: 1px;
+}
+.paddingt{
+  padding: 1px;
+  height: 25vh;
+  margin-bottom: 1px;
+}
+.padding{
+  padding: 1px;
+  height: 25vh;
+  color: white;
+  margin-bottom: 1px;
+}
+.a7rarpress_news {
+    float:left;
+    font-family: Oswald;
+    font-size: 14px;
+    margin-bottom:50px;
+    position:relative;
+  }
+  .container-fluid{
+    padding-top: 2px;
+background-color: #1B1C30;
+color: white;
+
+  }
+  .dima {
+    float:left;
+    padding:6px 15px;
+    background:#444;
+    color:#FFF;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .dema {
+    position: relative;
+    overflow: hidden;
+  }
+  .dema:after {
+    animation: dema 3s 1s forwards infinite;
+    content: '';
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: rotateZ(60deg) translate(-1em, 5em);
+  }
+  @keyframes dema {
+    100% {
+      transform: rotateZ(60deg) translate(0, -5em);
+    }
+  }
+  .led-grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #1B1C30;
+    border: 2px solid gray;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .led-row {
+    display: flex;
+  }
+  
+  .led {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin: 2px;
+  }
+  
+  .led.on {
+    background-color: red;
+  }
+  
+  table tr td:empty {
+    width: 10px;
+  }
+  mat-card{
+    padding: 0px;
+    
+  }
+
+  @media (max-width: 767px) {
+    /* change to vertical display */
+    .row {
+      flex-direction: column;
+    }
+  }
+  mat-card {
+    background-color: #1F335A;
+    
+  }
+  .example-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+     }
+
+  .mat-table {
+    overflow: auto;
+    width: 100%;
+    text-align: center;
+   
+  }
+  .container{
+      background-color: transparent;
+      border: 1.5px solid black;
+      border-radius: 10px;
+      text-align: center;
+  }
+  .mat-table{
+    background-color: transparent;
+    overflow: auto;   
+    width: 100%;
+}
+.mat-header-cell, .mat-cell {
+    min-width: 190px;
+    color:white;
+   
+}
+.mat-form-field-underline{
+  background-color:transparent;
+}
+.mat-row, .mat-header-row {
+  min-width: 2800px;
+  width: 100%;
+}
+.mat-form-field-flex{
+  font-size: 14px;
+  line-height: 1em;
+  color: #555;
+  background-image: none;
+  border: 1px solid ;
+  border-radius: 4px;
+  margin-top: 8px;
+  padding: 2px;
+}
+.mat-form-field-wrapper{
+  padding-bottom: 1.25em;
+  padding-top: 1.25em;
+}
+.mat-form-field-infix{
+  border:0px;
+}
+  table {
+    border-width: 1px; 
+    border: 1px solid white;
+    padding: 10px;
+    text-align: center;
+     }
+  table {
+    border-collapse: collapse;
+    text-align: center;
+  }
+  td, th {
+      margin-left: 5px;
+      border: 1px solid white;
+      }

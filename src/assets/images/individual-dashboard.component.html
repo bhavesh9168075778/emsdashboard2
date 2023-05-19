@@ -1,0 +1,187 @@
+<ngx-ui-loader [loaderId]="'individualdashboard'"></ngx-ui-loader>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-3">
+                    <mat-card class="shadows">
+                        <mat-card-content>
+                                    Age of the Transformer :
+                                    <b>{{ageTransformer}}</b> Year
+                                    <br>
+                                    <ng-select [items]="transformerList" bindLabel="transformerDetail"
+                                                placeholder="Transformer" [(ngModel)]="selectedTransformer"
+                                                (change)="transformerSelection(selectedTransformer)" [clearable]="false">
+                                    </ng-select>
+                                    <ng-select [items]="parameterList" bindLabel="name" placeholder="Parameters"
+                                        [(ngModel)]="selectedParameter" (change)="parameterSelection(selectedParameter)"
+                                        [clearable]="false">
+                                    </ng-select>
+
+                         </mat-card-content>
+                     </mat-card>
+                  </div>   <br>
+                <div class="col-md-9">
+                    <mat-card class="shadows">
+                        <mat-card-content>
+                            <div class="row" style="padding-left: 5px;">
+                                <div class="col-md-2" style="margin:0% 0% 0% 4%">
+                                    <div class="row" *ngIf="data.length > 0" style="text-align: center;">
+                                        <div *ngIf="selectedParameter.name == 'Oil Temperature' || selectedParameter.name == 'Frequency' || selectedParameter.name == 'Ambient Temperature' || selectedParameter.name == 'Load Percentage' || selectedParameter.name == 'I Unbalance' || selectedParameter.name == 'Winding Temperature' || selectedParameter.name == 'V Unbalance' || selectedParameter.name == 'Winding_Temp_By_Cal' ">
+                                            <b >Latest Data: {{ValuesForOilTemp | number : '1.2'}} </b>
+                                            <ejs-circulargauge id="circular-container" height='150px' width='150px'>
+                                                <e-axes>
+                                                    <e-axis [lineStyle]="lineStyle">
+                                                        <e-ranges>
+                                                            <e-range start=0 end=100 radius="108%"></e-range>
+                                                        </e-ranges>
+                                                        <e-pointers>
+                                                            <e-pointer [value]="ValuesForOilTemp" [color]='RangeColor' type="Marker" markerShape="InvertedTriangle" radius="100%" [markerHeight]="markerSize" [markerWidth]="markerSize"></e-pointer>
+                                                            <e-pointer [value]="ValuesForOilTemp"  [color]='RangeColor' type="RangeBar" radius="50%" pointerWidth=5></e-pointer>
+                                                            <e-pointer [value]="ValuesForOilTemp"  [color]='RangeColor' radius="60%" pointerWidth=10 [cap]="pointerCap" [needleTail]= "pointerTail"></e-pointer>
+                                                        </e-pointers>
+                                                    </e-axis>
+                                                </e-axes>
+                                            </ejs-circulargauge>
+                                            <p><b>{{latestDataDate}}</b></p>
+                                        </div>
+                                        <div *ngIf="selectedParameter.name == 'Humidity'">
+                                            <b style="margin: 0% 0% 0% 15%;">Latest Data: {{ValuesForOilTemp}} </b>
+                                            <ejs-circulargauge id="circular-container" height='150px' width='150px'>
+                                                <e-axes>
+                                                    <e-axis>
+                                                        <e-ranges>
+                                                            <e-range start=0 end=100 radius="108%"></e-range>
+                                                        </e-ranges>
+                                                        <e-pointers>
+                                                            <e-pointer [value]="ValuesForOilTemp" type="Marker" markerShape="Triangle" radius="100%" color="white" [markerHeight]="15" [markerWidth]="15" [border]="pointerBorder"></e-pointer>
+                                                        </e-pointers>
+                                                    </e-axis>
+                                                </e-axes>
+                                            </ejs-circulargauge>
+                                        </div>
+                                        <div *ngIf="data.length > 0" >
+                                            <div *ngIf="selectedParameter.name == 'KVA' || selectedParameter.name == 'PF' || selectedParameter.name ==  'Ampere' || selectedParameter.name ==  'Voltage' || selectedParameter.name ==  'V Variance'  || selectedParameter.name ==  'KVAr' || selectedParameter.name ==  'KW'  ">
+                                                <b><p >Latest Data </p>
+                                                    <div class="row" style="width: 400px;margin: 1% 0% 0% 0%;">
+                                                <div class="col-md-3">
+                                                <div style="height: 100px;width: 100px;background-color: #fa2828;  text-align: center;">
+                                                    R <br>Phase<br> <h5>{{valueForPhaseA}}</h5>
+                                                </div>&nbsp;&nbsp;&nbsp;
+                                                 </div><div class="col-md-1"></div>
+                                                 <div class="col-md-3">
+                                                <div style="height: 100px;width: 100px;background-color: #F7F743;  text-align: center;">
+                                                    Y <br>Phase<br> <h5>{{valueForPhaseB}}</h5>
+                                                </div>
+                                                </div><div class="col-md-1"></div>
+                                                <div class="col-md-3">
+                                                    <div style="height: 100px;width: 100px;background-color: #4365F7;  text-align: center;">
+                                                        B <br>Phase<br> <h5>{{valueForPhaseC}}</h5>
+                                                    </div>
+                                                    </div>
+                                            </div>
+                                            <p style="margin: -3% 0% 0% 0%;">{{latestDataDate}}</p>
+                                        </b>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div *ngIf="data && data.length == 0">
+                                        <p class="text-danger">*Note: </p>
+                                        <p class="alert alert-warning">No data to show results!</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <span *ngIf="showtableData">
+                                        <div *ngIf="selectedParameter.name == 'Oil Temperature' || selectedParameter.name == 'Frequency' || selectedParameter.name == 'Humidity' || selectedParameter.name == 'Ambient Temperature' || selectedParameter.name == 'Load Percentage' || selectedParameter.name == 'Winding Temperature' || selectedParameter.name == 'I Unbalance' || selectedParameter.name == 'V Unbalance' || selectedParameter.name == 'Oil Level' || selectedParameter.name == 'Winding_Temp_By_Cal'">
+                                            <table class="table" style="margin: 10% 0% 0% 0%;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><b>Min</b></td>
+                                                        <td>{{tableData?.min | number:'1.2-3'}}</td>
+
+
+                                                        <td><b>Max</b></td>
+                                                        <td>{{tableData?.max | number:'1.2-3'}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b>Average</b></td>
+                                                        <td>{{tableData?.avg | number:'1.2-3'}}</td>
+
+                                                        <td><b>Range</b></td>
+                                                        <td>{{tableData?.range | number:'1.2-3'}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                         </div>
+                                    </span>
+                                    <div *ngIf="data && data.length == 0">
+                                        <p class="text-danger">*Note: </p>
+                                        <p class="alert alert-warning">No data to show results!</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2">
+                                    <ng-select [items]="durationList" bindLabel="name" placeholder="Duration"
+                                        [(ngModel)]="selectedDuration" (change)="durationSelection(selectedDuration)"
+                                        [clearable]="false">
+                                    </ng-select>
+                                </div>
+
+                                <div *ngIf="showDateRange" class="col-md-2" style="padding-top: 20px">
+                                    <input [owlDateTime]="dt1" [selectMode]="'range'" [owlDateTimeTrigger]="dt1"
+                                        placeholder="Select Date Range" (dateTimeChange)="changeDateRange($event)">
+                                    <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                                </div>
+
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-card class="shadows">
+                        <mat-card-content>
+
+
+                            <p style="padding: 5px;"><b>{{selectedParameter?.name}}</b></p>
+                            <hr>
+                            <ngx-ui-loader [loaderId]="'individualdashboardgraph'"></ngx-ui-loader>
+                            <span style="padding: 5px;" *ngIf="parameterValuedisplay && parameterValuedisplay.name1"><b>{{parameterValuedisplay?.name1}} :- </b></span>
+                            <span *ngIf="parameterValuedisplay && parameterValuedisplay.value1"><b>{{parameterValuedisplay?.value1}}</b></span>
+                            <span *ngIf="parameterValuedisplay && parameterValuedisplay.name2"><b>{{parameterValuedisplay?.name2}} :- </b></span>
+                            <span *ngIf="parameterValuedisplay && parameterValuedisplay.value2"><b>{{parameterValuedisplay?.value2}}</b></span>
+                            <div class="row" *ngIf="data.length > 0">
+
+                                <div class=" col-md-12" style="height: 70vh;">
+                                    <div *ngIf="selectedParameter.name == 'Oil Level'; else othergraph">
+                                        <div *ngIf="innerWidth > 1000; else otherGauege">
+                                            <div style="margin: 0% 0% 0% 20%;   position: relative;"><span  ><h1 style=" margin: 0% 0% -5% 27%;">Normal</h1></span><rg-gauge-chart  [canvasWidth]="canvasWidth" [needleValue]="needleValue" [centralLabel]="centralLabel" [options]="options" [name]="name"  [bottomLabel]="bottomLabel"></rg-gauge-chart>
+                                                <h4> <p style="margin: -11% 0% 0% 23%;">{{latestDataDate}}</p> </h4>
+                                            </div>
+                                        </div>
+                                        <ng-template #otherGauege>
+                                            <div style="text-align: center;   position: relative;"><span  style="font-size: large;">Normal</span><rg-gauge-chart [canvasWidth]="canvasWidth" [needleValue]="needleValue" [centralLabel]="centralLabel" [options]="options" [name]="name"  [bottomLabel]="bottomLabel"></rg-gauge-chart> </div>
+                                        </ng-template>
+                                    </div>
+                                    <ng-template #othergraph>
+
+                                    <plotly-plot [data]="data" [layout]="graph.layout" [config]="graph.config"
+                                        [useResizeHandler]="true" [style]="{position: 'relative', width: '100%', height: '100%'}">
+                                    </plotly-plot>
+
+                                </ng-template>
+                                </div>
+
+                            </div>
+                            <div *ngIf="data && data.length == 0">
+                                <p class="text-danger">*Note: </p>
+                                <p class="alert alert-warning">No data to show results!</p>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

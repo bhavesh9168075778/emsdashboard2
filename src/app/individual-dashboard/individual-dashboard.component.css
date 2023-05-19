@@ -1,0 +1,112 @@
+hr {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.mat-card {
+    padding:0;
+}
+
+body {
+    color: #fff;
+    font: 300 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+    margin: 0px; /*adds 0 space on all sides*/ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  *,
+  *:before,
+  *:after {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+/***
+    MAIN
+****/
+.main {
+    position: relative;
+ 
+    align-items: center;
+    justify-content: center;
+    /*overflow: hidden;*/ 
+    /*box-shadow: 2px 3px 15px -5px black;*/
+}
+.circle {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    border-radius: 100%;
+    background-image: linear-gradient(to right, #7c01ba, #ed0020);
+    border: 10px white solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 2px 3px 15px -5px black;
+}
+.inner-circle {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    background-color: #fff;
+    box-shadow: 2px 3px 15px -5px black;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.triangle {
+    height: 60px;
+    width: 60px;
+    position: absolute;
+    border-bottom-left-radius: 100%;
+    transform: rotate(-45deg);
+    bottom: -25px;
+    background-color: white;
+}
+.inner-circle p {
+    margin: 0;
+}
+.p-temp {
+    position: relative;
+    top: 0;
+}
+
+/*****
+        TEMP SWAPING
+******/
+.temp {
+    display: flex;
+    position: absolute;
+    left: -50px;
+    top: 50%;
+    margin-top: -20%;
+}
+.left {
+    font-size: 10px;
+    position: absolute;
+    left: 40px;
+    opacity: 0;
+    transition: all 0.5s linear;
+}
+.right {
+    font-size: 20px;
+    position: absolute;
+    left: 65px;
+    opacity: 1;
+    transition: all 0.5s linear;
+}
+
+.shadows{
+    box-shadow: 5px 5px 5px 5px #888888;
+    border-radius: 20px; 
+    border: 3px solid #FFFFFF;
+}

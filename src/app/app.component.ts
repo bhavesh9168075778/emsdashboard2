@@ -1,0 +1,26 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnInit {
+  constructor(private router: Router) {
+      
+    }
+  ngOnInit() {
+    window.addEventListener('storage', (event) => {
+      if (event.storageArea == localStorage) {
+        let token = localStorage.getItem('token');
+        if (token == undefined) {
+          this.router.navigate(['/auth/signin']);
+        }
+      }
+    }, false);
+  }
+  title = 'trafobola';
+
+
+
+}

@@ -1,0 +1,78 @@
+
+    <div class="login" style="background-image:url('assets/images/loginbg.gif');background-repeat:no-repeat;background-size:100% 100%;">
+    <div class="container-fluid">
+        <div  class="row">
+
+            <div class="col-md-4">
+                <!-- background-color: #e74141c7; -->
+                <mat-card style="border-radius: 8px;margin:10% 0% 0% 0%;border: 2px solid black">
+                    <mat-card-title>Sign In</mat-card-title>
+                    <mat-card-content>
+                        <form [formGroup]="form" (ngSubmit)="submit()">
+                            <p>
+                                <mat-form-field  appearance="outline">
+                                    <mat-label  class="fa fa-user icon">Your Email Address</mat-label>
+                                    <input type="text" matInput placeholder="Your Email Address" formControlName="email"
+                                        required>
+                                </mat-form-field>
+                                <span  class="form-text error"
+                                    *ngIf="form.controls.email.touched && form.controls.email.errors?.required">
+                                    Please Enter Email Address
+                                </span>
+                                <span  class="form-text error"
+                                    *ngIf="form.controls.email.touched && form.controls.email.errors?.email">
+                                    Enter Valid Email Address.
+                                </span>
+                            </p>
+                            <p>
+                                <mat-form-field  appearance="outline">
+                                    <mat-label  class="fa fa-key icon">Password</mat-label>
+                                    <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password"
+                                        formControlName="pass" required>
+                                    <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    </button>
+                                </mat-form-field>
+                                <span  class="form-text error"
+                                    *ngIf="form.controls.pass.touched && form.controls.pass.errors?.required">
+                                    Please Enter Password
+                                </span>
+                            </p>
+                            <p *ngIf="responseCode === '-1'">
+                                <span  class="form-text error">
+                                    {{showMessage}}
+                                </span>
+                            </p>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                </div>
+                                <div class="col-md-8">
+                                    <button  mat-button class="btns">Sign In
+                                        <mat-progress-bar class="stretchOut" mode={{buttonMode}} value="0">
+                                        </mat-progress-bar>
+                                    </button></div>
+
+                            </div>
+                            <div class="accordion" id="accordionExample">
+                                <div  class="card-header" id="headingOne">
+                                    <h6><button style=" float:right;" class="btn btn-link fa fa-play-circle" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <strong>Watch video</strong>
+                                    </button>  </h6>
+                                </div>
+                                <div id="collapseOne" class="collapse blink" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                           <br> <h6>Get full overview of the BOLA Dashboard</h6>
+                                            <video style="height:40%;width:100%;float:right"class="library" controls preload="auto" data-config="some-js-object-here">
+                                                <source src="assets/video/Information.mp4" type='video/mp4'>
+                                                </video>
+                                </div>
+                            </div>
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+
+            </div>
+        </div>
+    </div>
+    </div>

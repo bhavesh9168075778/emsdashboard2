@@ -1,0 +1,168 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+  }
+  .container{
+      background-color: white;
+      border: 1.5px solid black;
+      border-radius: 10px;
+      text-align: center;
+  }
+  .mat-table {
+    overflow: auto;
+    width: 100%;
+  }
+  .container{
+      background-color: white;
+      border: 1.5px solid black;
+      border-radius: 10px;
+      text-align: center;
+  }
+  .mat-table{
+      background-color: rgba(255, 255, 255, 0.959);
+      overflow: auto;   
+      width: 100%;
+  }
+  .mat-header-cell, .mat-cell {
+      min-width: 200px;
+  }
+  .mat-form-field-underline{
+      background-color:transparent;
+  }
+  
+  .mat-form-field-flex{
+      font-size: 14px;
+      line-height: 1em;
+      color: #555;
+      background-image: none;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-top: 8px;
+      padding: 2px;
+  }
+  .mat-form-field-wrapper{
+      padding-bottom: 1.25em;
+      padding-top: 1.25em;
+  }
+  .mat-form-field-infix{
+      border:0px;
+  }
+  .mat-paginator{
+      background-color: white;
+  }
+  
+  .mat-row, .mat-header-row {
+      min-width: 2800px;
+      width: 100%;
+    }
+ .shadows{
+    color: darkslateblue;
+    text-shadow: 3px -3px rgba(71, 61, 139, 0.568);
+ }
+ .text {
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-family: 'Russo One', sans-serif;
+    text-align: center;
+    
+    color: var(--text);
+    text-shadow: 
+      10px 10px        var(--shadow), 
+      9.75px 9.75px  var(--shadow), 
+      9.5px 9.5px    var(--shadow), 
+      9.25px 9.25px  var(--shadow),
+      9px 9px        var(--shadow), 
+      8.75px 8.75px  var(--shadow), 
+      8.5px 8.5px    var(--shadow), 
+      8.25px 8.25px  var(--shadow),
+      8px 8px        var(--shadow), 
+      7.75px 7.75px  var(--shadow), 
+      7.5px 7.5px    var(--shadow), 
+      7.25px 7.25px  var(--shadow),
+      7px 7px        var(--shadow), 
+      6.75px 6.75px  var(--shadow), 
+      6.5px 6.5px    var(--shadow), 
+      6.25px 6.25px  var(--shadow),
+      6px 6px        var(--shadow), 
+      5.75px 5.75px  var(--shadow), 
+      5.5px 5.5px    var(--shadow), 
+      5.25px 5.25px  var(--shadow),
+      5px 5px        var(--shadow), 
+      4.75px 4.75px  var(--shadow), 
+      4.5px 4.5px    var(--shadow), 
+      4.25px 4.25px  var(--shadow),
+      4px 4px        var(--shadow),
+      3.75px 3.75px  var(--shadow),
+      3.5px 3.5px    var(--shadow),
+      3.25px 3.25px  var(--shadow),
+      3px 3px        var(--shadow),
+      2.75px 2.75px  var(--shadow),
+      2.5px 2.5px    var(--shadow),
+      2.25px 2.25px  var(--shadow),
+      2px 2px        var(--shadow),
+      1.75px 1.75px  var(--shadow),
+      1.5px 1.5px    var(--shadow),
+      1.25px 1.25px  var(--shadow),
+      1px 1px        var(--shadow),
+      0.75px 0.75px  var(--shadow),
+      0.5px 0.5px    var(--shadow),
+      0.25px 0.25px  var(--shadow);
+  }
+  
+  span {
+    position: relative;
+    animation: jump 2.75s infinite;
+  }
+  
+  span:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+  
+  span:nth-child(3) {
+    animation-delay: 0.5s;
+  }
+  
+  span:nth-child(4) {
+    animation-delay: 0.7s;
+  }
+  
+  span:nth-child(5) {
+    animation-delay: 0.9s;
+  }
+  
+  @keyframes jump {
+    0% {
+      top: 0;
+    }
+    50% {
+      top: -10px;
+    }
+    100% {
+      top: 0;
+    }
+  }
+
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }

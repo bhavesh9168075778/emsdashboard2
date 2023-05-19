@@ -1,0 +1,77 @@
+<div class="container-fluid" style="padding: 0 1.8rem 1.8rem">
+    <h5>Device Master</h5>
+    <div class="row">
+        <div class="col-md-12">
+          <div>
+            <div class="example-button-row">
+              <button mat-raised-button color="primary" (click)="openDialog('Add')">Add</button>
+            </div>
+            <div fxLayout fxLayoutAlign="center center">
+              <mat-form-field fxFlex="40%">
+                <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Search">
+              </mat-form-field>
+              
+            </div>
+            
+            
+            <table mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter" matSort class="mat-elevation-z8">
+              <ng-container matColumnDef="deviceId">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Device ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.deviceId}} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="deviceModel">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Device Model </th>
+                <td mat-cell *matCellDef="let element"> {{element.deviceModel}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="deviceCategory">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Device Category </th>
+                <td mat-cell *matCellDef="let element"> {{element.deviceCategory}} </td>
+              </ng-container>
+
+              <!-- <ng-container matColumnDef="version">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Version </th>
+                <td mat-cell *matCellDef="let element"> {{element.version}} </td>
+              </ng-container> -->
+              <ng-container matColumnDef="firmwareversion">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Firmware Version </th>
+                <td mat-cell *matCellDef="let element"> {{element.firmwareversion}} </td>
+              </ng-container>
+              <ng-container matColumnDef="hardwareversion">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Hardware Version </th>
+                <td mat-cell *matCellDef="let element"> {{element.hardwareversion}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="passcode">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Passcode </th>
+                <td mat-cell *matCellDef="let element"> {{element.passcode}} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-icon-button color="warn" (click)="deleteData(element.deviceId)">
+                    <mat-icon class="mat-18">delete</mat-icon>
+                  </button>
+                    <button mat-icon-button color="primary" (click)="editDevice(element.deviceId)">
+                      <mat-icon class="mat-18">edit</mat-icon>
+                    </button>
+                      <!-- <span class="material-icons" (click)="getInfo(element.deviceId)">
+                        info
+                        </span> -->
+                </td>
+                
+              </ng-container>
+
+            
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+          </div>
+        </div>
+
+    </div>
+    </div>
+

@@ -1,0 +1,58 @@
+<ngx-ui-loader [loaderId]="'availabilitystatus'"></ngx-ui-loader>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-card>
+                        <mat-card-content>
+                            <div class="row">
+                                <div class="offset-md-6 col-sm-2 col-md-2">
+                                    <ng-select [items]="transformerList"  bindLabel="label"
+                                        placeholder="Transformer" [(ngModel)]="selectedTransformer"
+                                        (change)="transformerSelection()" [clearable]="false">
+                                    </ng-select>
+                                </div>
+                                <div class="col-sm-4 col-md-2">
+                                    <ng-select [items]="durationList" bindLabel="name" placeholder="Duration"
+                                        [(ngModel)]="selectedDuration" (change)="durationSelection(selectedDuration)"
+                                        [clearable]="false">
+                                    </ng-select>
+                                </div>
+                                <div *ngIf="showDateRange" class="col-md-2" style="padding-top: 20px">
+                                    <input [owlDateTime]="dt1" [selectMode]="'range'" [owlDateTimeTrigger]="dt1"
+                                        placeholder="Select Date Range" (dateTimeChange)="changeDateRange($event)">
+                                    <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                                </div>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-card>
+                        <mat-card-content>
+                            <p><b>AVAILABILITY(%)</b></p>
+                            <hr>
+                            <ngx-ui-loader [loaderId]="'availabilitystatusgraph'"></ngx-ui-loader>
+                            <span *ngIf="data.length > 0">
+                                <div class="row">
+                                    <div class="col-md-12" style="height: 70vh;">
+                                        <plotly-plot [data]="data" [layout]="graph.layout" [config]="graph.config"
+                                            [useResizeHandler]="true" [style]="{position: 'relative', width: '100%', height: '100%'}">
+                                        </plotly-plot>
+                                    </div>
+                                </div>
+                            </span>
+                            <div *ngIf="data && data.length == 0">
+                                <p class="text-danger">*Note: </p>
+                                <p class="alert alert-warning">No data to show results!</p>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

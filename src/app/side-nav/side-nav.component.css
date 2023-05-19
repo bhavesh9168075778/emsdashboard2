@@ -1,0 +1,152 @@
+.example-container {
+  height: 92vh;
+}
+
+.text {
+  font-size: 10px
+}
+
+.example-sidenav {
+   user-select: none;
+}
+.full-width {
+  width: 100%;
+}
+.menu-button {
+  transition: 300ms ease-in-out;
+  transform: rotate(0deg);
+}
+.menu-button.rotated {
+  transform: rotate(180deg);
+}
+.submenu {
+  overflow-y: hidden;
+  transition: transform 300ms ease;
+  transform: scaleY(0);
+  transform-origin: top;
+  padding-left: 30px;
+}
+.submenu.expanded {
+  transform: scaleY(1);
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+  height: 8vh;
+}
+
+.bg-color{
+  color: #fff!important;
+}
+
+.br { 
+  display: block; 
+  margin-bottom: 0em;
+  font-size: 10px 
+} 
+
+.brsmall { 
+  display: block; 
+  margin-bottom: -.2em; 
+  font-size: 10px
+} 
+
+.brxsmall { 
+  display: block; 
+  margin-bottom: -.4em; 
+  font-size: 10px
+} 
+
+.nav-header{
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,.08);
+/*   height: 15% */
+}
+
+.logo-div{
+  width: 15%;
+}
+
+.mat-menu-content:not(:empty){
+  padding-top: 3px
+}
+
+.mat-menu-panel{
+  overflow: hidden;
+  height: 50px;
+}
+
+::ng-deep .my-menu{
+  width:400px;
+}
+
+p{
+  margin-bottom: 0;
+}
+
+hr {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.mousehover{
+  cursor: pointer;
+}
+
+#sidenavfont{
+  font-size: 14px;
+}
+
+.mat-list-base {
+  padding-top: 0px;
+}
+
+.mat-nav-list .mat-list-item {
+  height: 40px !important;
+}
+
+.img-fluid {
+    height: 70px;
+     margin-bottom: 0em
+}
+
+.table {
+    width: 200% !important;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+::ng-deep.mat-menu-panel {
+  max-width: 300px !important;
+}
+
+.blob {
+	background: red;
+	border-radius: 50%;
+	margin: 10px;
+	height: 10%;
+	width: 0.5%;
+
+	box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+	transform: scale(1);
+	animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+	}
+}
+.resizeDiv {
+padding-right: 1px;
+}

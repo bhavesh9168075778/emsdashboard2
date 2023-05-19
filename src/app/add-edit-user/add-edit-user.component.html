@@ -1,0 +1,198 @@
+<h2 mat-dialog-title *ngIf="data && data.type === 'add'">Add</h2>
+<h2 mat-dialog-title *ngIf="data && data.type === 'edit'">Edit</h2>
+<ngx-ui-loader [loaderId]="'add-edit-user'"></ngx-ui-loader>
+<form [formGroup]="form" (ngSubmit)="submit(form)">
+    <mat-dialog-content>
+        <div class="row col-md-12">
+            <mat-form-field>
+                <mat-label>First Name</mat-label>
+                <input type="text" matInput placeholder="First Name" formControlName="firstName" required>
+            </mat-form-field>
+            <span class="error" *ngIf="form.controls.firstName.touched && form.controls.firstName.errors?.required">
+                Please Enter First Name
+            </span>
+            <span class="error" *ngIf="form.controls.firstName.touched && form.controls.firstName.errors?.maxlength">
+                First Name cannot exceed 100 characters
+            </span>
+        </div>
+        <div class="row col-md-12">
+            <mat-form-field>
+                <mat-label>Last Name</mat-label>
+                <input type="text" matInput placeholder="Last Name" formControlName="lastName">
+            </mat-form-field>
+            <span class="error" *ngIf="form.controls.lastName.touched && form.controls.lastName.errors?.maxlength">
+                Last Name cannot exceed 100 characters
+            </span>
+        </div>
+        <div class="row col-md-12">
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input type="text" matInput placeholder="Email" formControlName="email" required>
+            </mat-form-field>
+            <span class="form-text error" *ngIf="form.controls.email.touched && form.controls.email.errors?.required">
+                Please Enter Email Address
+            </span>
+            <span class="form-text error" *ngIf="form.controls.email.touched && form.controls.email.errors?.email">
+                Enter Valid Email Address.
+            </span>
+        </div>
+        <div class="row col-md-12">
+            <mat-form-field>
+                <mat-label>Contact</mat-label>
+                <input type="text" matInput placeholder="Contact" formControlName="contact" required>
+            </mat-form-field>
+            <span class="form-text error"
+                *ngIf="form.controls.contact.touched && form.controls.contact.errors?.required">
+                Please Enter Contact
+            </span>
+            <span class="form-text error"
+                *ngIf="form.controls.contact.touched && form.controls.contact.errors?.pattern">
+                Please Enter Valid Contact Number
+            </span>
+        </div>
+        <div class="row col-md-12">
+            <mat-form-field>
+                <mat-label *ngIf="data && data.type === 'add'">Password</mat-label>
+                <mat-label *ngIf="data && data.type === 'edit'">Update Password</mat-label>
+                <input matInput [type]="hide ? 'text' : 'password'" placeholder="Password" formControlName="password"
+                    [required]="data && data.type === 'add'">
+                <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            <span class="form-text error"
+                *ngIf="form.controls.password.touched && form.controls.password.errors?.required">
+                Please Enter Password
+            </span>
+            <span class="error" *ngIf="form.controls.password.touched && form.controls.password.errors?.maxlength">
+                Password cannot exceed 50 characters
+            </span>
+        </div>
+        <div class="row col-md-12" style="padding-top: 10px;">
+            <mat-form-field *ngIf="data && data.roleid == 2 && data.currentUserData.roleid == 1">
+                <mat-label>Utility Name</mat-label>
+                <input type="text" matInput placeholder="Utility Name" formControlName="utilityName" required>
+            </mat-form-field>
+            <mat-form-field *ngIf="data && data.roleid != 2">
+                <mat-label>Utility Name</mat-label>
+                <mat-select formControlName="utilityName" (selectionChange)="onSelectUtilityChange($event.value)"
+                    [disabled]="data && data.roleid == 3 && data.currentUserData.roleid == 2" required>
+                    <mat-option *ngFor="let utility of utilityList" [value]="utility">{{utility.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <span class="form-text error"
+                *ngIf="form.controls.utilityName && form.controls.utilityName.touched && form.controls.utilityName.errors?.required">
+                Please Provide Utility Name
+            </span>
+        </div>
+        <!-- data && (data.roleid == 3 && data.currentUserData.roleid == 2) && (data.roleid == 2 && data.currentUserData.roleid == 1) -->
+        <div class="row col-md-12" style="padding-top: 10px;"
+            *ngIf="data && !(data.roleid == 2 && (data.currentUserData.roleid == 1 || data.currentUserData.roleid == 2))">
+            <mat-form-field>
+                <mat-label>UserAdmin Name</mat-label>
+                <input readonly type="text" matInput placeholder="UserAdmin Name" formControlName="userAdmin">
+            </mat-form-field>
+        </div>
+        <div class="row col-md-12">
+            <mat-form-field>
+                <mat-label>Address</mat-label>
+                <input type="text" matInput placeholder="Address" formControlName="address" required>
+            </mat-form-field>
+            <span class="form-text error"
+                *ngIf="form.controls.address.touched && form.controls.address.errors?.required">
+                Please Enter Address
+            </span>
+        </div>
+        <div class="row col-md-12">
+            <mat-form-field>
+                <mat-label>Locality</mat-label>
+                <input type="text" matInput placeholder="Locality" formControlName="locality" required>
+            </mat-form-field>
+            <span class="form-text error"
+                *ngIf="form.controls.locality.touched && form.controls.locality.errors?.required">
+                Please Enter Locality
+            </span>
+            <span class="error" *ngIf="form.controls.locality.touched && form.controls.locality.errors?.maxlength">
+                Locality cannot exceed 200 characters
+            </span>
+        </div>
+        <div class="row col-md-12">
+            <mat-form-field>
+                <mat-label>Country</mat-label>
+                <mat-select formControlName="country" (selectionChange)="countrySelection($event.value)" required>
+                    <mat-option *ngFor="let country of countryList" [value]="country">{{country.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <span class="form-text error"
+                *ngIf="form.controls.country.touched && form.controls.country.errors?.required">
+                Please Enter Country
+            </span>
+        </div>
+        <div class="row col-md-12">
+            <mat-form-field>
+                <mat-label>State</mat-label>
+                <mat-select formControlName="state" (selectionChange)="stateSelection($event.value)" required>
+                    <mat-option *ngFor="let state of stateList" [value]="state">{{state.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <span class="form-text error" *ngIf="form.controls.state.touched && form.controls.state.errors?.required">
+                Please Enter State
+            </span>
+        </div>
+        <div class="row col-md-12">
+            <mat-form-field>
+                <mat-label>City</mat-label>
+                <mat-select formControlName="city" required>
+                    <mat-option *ngFor="let city of cityList" [value]="city">{{city.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <span class="form-text error" *ngIf="form.controls.city.touched && form.controls.city.errors?.required">
+                Please Enter City
+            </span>
+        </div>
+        <div class="row col-md-12">
+            <mat-form-field>
+                <mat-label>TimeZone</mat-label>
+                <input type="text" matInput placeholder="e.g:+05:30,+01:00" formControlName="timezone" required>
+            </mat-form-field>
+            <span class="form-text error"
+                *ngIf="form.controls.timezone.touched && form.controls.timezone.errors?.required">
+                Please Enter Timezone
+            </span>
+        </div>
+        <div *ngIf="roleid == 1" class="row col-md-12">
+            <mat-form-field>
+                <mat-label>Dashboard Access</mat-label>
+                <mat-select formControlName="dashboard"  required>
+                    <mat-option *ngFor="let dashboard of dashboardList" [value]="dashboard">{{dashboard.dashboard}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <span class="form-text error"
+                *ngIf="form.controls.country.touched && form.controls.country.errors?.required">
+                Please Enter Country
+            </span>
+        </div>
+        <br>
+        <h4 *ngIf="roleid == 1 || hvlvreportaccess == 1 || updownreportaccess == 1 " >Report Access</h4>
+        <div *ngIf="roleid == 1 || hvlvreportaccess == 1" class="row col-md-12">
+                 <label>Hv Lv Report</label>
+                <div class="col-md-6">
+                    <mat-slide-toggle  formControlName="hvlvreportaccess"></mat-slide-toggle>
+                </div>
+        </div>
+    
+       <div *ngIf="roleid == 1 || updownreportaccess == 1" class="row col-md-12">
+        <label>Up/Down Report</label>
+       <div class="col-md-6">
+           <mat-slide-toggle  formControlName="updownreportaccess"></mat-slide-toggle>
+       </div>
+        </div>
+        <br>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button class="mat-raised-button" type="button" (click)="close()">Close</button>
+        <button class="mat-raised-button mat-primary" [disabled]="!form.valid">Save</button>
+    </mat-dialog-actions>
+</form>

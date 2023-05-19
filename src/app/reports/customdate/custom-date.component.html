@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>Please Select From and To Date</h2>
+
+<mat-dialog-content>
+
+<mat-form-field style="width: 100%;" >
+    <label>From Date*</label>
+    <input type="datetime" matInput [matDatepicker]="picker" [(ngModel)]="fromdate" >
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+
+</mat-form-field>
+<mat-form-field style="width: 100%;" >
+    <label>To Date*</label>
+    <input type="datetime" matInput [matDatepicker]="picker1" [(ngModel)]="todate" >
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+
+</mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions style="float: right;">
+    <button class="mat-raised-button mat-primary" (click)="apply()">Apply</button>
+    <button class="mat-raised-button" (click)="apply()">Close</button>
+</mat-dialog-actions>

@@ -1,0 +1,152 @@
+<div class="container-fluid">
+    <ngx-ui-loader [loaderId]="'individual_graph'"></ngx-ui-loader>
+    <div class="row">
+        <div class="col-md-3">
+            <mat-card class="padding">
+                <mat-card-content>
+                    <ng-select class="custom" [items]="uniqueDeviceId | keyvalue" bindLabel="selectedDevice"
+                        placeholder="Device Id" [(ngModel)]="selectedDevice"
+                        (change)="filter('DeviceID',selectedDevice)" [clearable]="false"></ng-select>
+
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-md-3 ">
+            <mat-card class="padding">
+                <mat-card-content>
+                    <ng-select class="custom" [items]="energyMeterIdArray" bindLabel="meterSerialNumber"
+                        placeholder="energy Meter Id" [(ngModel)]="selectedEnergyMeter"
+                        (change)="filter('energyMeter',selectedEnergyMeter)" [clearable]="false">
+                    </ng-select>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-md-3">
+            <mat-card class="padding">
+                <mat-card-content>
+                    <ng-select class="custom" [items]="parametersList" placeholder="Parameters"
+                        [(ngModel)]="selectedParameter" (change)="filter('parameter',selectedParameter)"
+                        [clearable]="false">
+                    </ng-select>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-md-3 ">
+            <mat-card class="padding">
+                <mat-card-content>
+                    <ng-select class="custom" [items]="timeOptions" placeholder="Duration"
+                        [(ngModel)]="selectedTimeDuration" (change)="filter('date',selectedTimeDuration)"
+                        [clearable]="false">
+                    </ng-select>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+
+    </div>
+
+
+    <div class="row " style="padding-left: 14px;">
+
+        <div class="col-md-4 mpadding " style="height:77vh ">
+
+            <mat-card style="height:10vh;    margin-bottom: 1px;">
+                <mat-card-content style="color: white;">
+                    <div class="col-md-12 padding"
+                        style="text-align:center;font-family:RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 18px;">
+                        {{totalkwhcurrentmonth}} <a style="font-size: 12px;">KVAH</a><br>
+                        <div
+                            style="font-family: RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 12px;">
+                            Overall Energy Consume</div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <mat-card style="height:71vh">
+                <mat-card-content style="color: white;">
+                    <div class="row" style="text-align: center;">
+                        <div class="col-md-6"
+                            style="font-family:RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 18px;">
+                            {{KWHValuer}} <a style="font-size: 12px;">KVAH</a><br>
+                            <div
+                                style="font-family: RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 12px;">
+                                Total Energy Received <br>In Current Month</div>
+                        </div>
+
+                        <div class="col-md-6"
+                            style=" font-family: RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 18px;">
+                            {{latestkwh_p}} <a style="font-size: 12px;">KVAH</a><br>
+                            <div
+                                style="font-family: RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 12px;">
+                                Total Energy Consumed <br>In Current Month</div>
+                        </div>
+                    </div>
+                    <div class="row" style="text-align: center;">
+                        <div class="col-md-6"
+                            style="margin-top: 3%;font-family:RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 18px;">
+                            {{KWHValuel}} <a style="font-size: 12px;">KVAH</a><br>
+                            <div
+                                style="font-family: RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 12px;">
+                                Total Energy Loss <br>In Current Month</div>
+                        </div>
+
+                        <div class="col-md-6"
+                            style="margin-top: 3%; font-family: RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 18px;">
+                            {{pf}} <a style="font-size: 12px;">PF</a><br>
+                            <div
+                                style="font-family: RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 12px;">
+                                Current month average power factor </div>
+                        </div>
+                    </div>
+                    <div class="row" style="color: black;">
+                        <div class="col-md-12" #energyconsumption_graph></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7 epaading"
+                            style="text-align: center;font-family: RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 16px;">
+                            <br><br> Efficiency of the <br>&nbsp;&nbsp;&nbsp;asset
+                        </div>
+
+                        <div class="col-md-5 epaading" #efficiency_graph></div>
+
+                    </div>
+
+                </mat-card-content>
+            </mat-card>
+
+        </div>
+
+        <div class="col-md-8 mpadding" style="height: 90vh;">
+            <mat-card style="height: 47vh;">
+              <mat-card-content>
+                <div class="col-md-12 graph-container" #individual_graph>
+                    
+                </div>
+              </mat-card-content>
+            </mat-card>
+          
+            <mat-card style="max-height: 274px; max-width: 100%; overflow-y: auto;">
+              <mat-card-content>
+                <div class="static-text">Realtime Alerts</div>
+                <div class="table-container">
+                  <table mat-table [dataSource]="myData" matSort class="example-container mat-elevation-z8">
+                    <ng-container *ngFor="let col of heading_dummy_alert" [matColumnDef]="col">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell">{{ col }}</th>
+                      <td mat-cell *matCellDef="let element" class="cell">{{ element[col] }}</td>
+                    </ng-container>
+          
+                    <tr mat-header-row *matHeaderRowDef="heading_dummy_alert" class="header-row"></tr>
+                    <tr mat-row *matRowDef="let row; columns: heading_dummy_alert"></tr>
+                  </table>
+                  <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          
+    </div>
+
+
+
+
+
+</div>

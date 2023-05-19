@@ -1,0 +1,512 @@
+<ngx-ui-loader [loaderId]="'dashboard'"></ngx-ui-loader>
+
+    <div class="accordion" id="accordionExample">
+
+    <div *ngIf="currentUserData.userid == 173 else realCode" class="card-header" id="headingOne">
+        <div class="row ">
+            <div class="col-md-4">
+                <h2 class="mb-0">
+                    <mat-card>
+                        <mat-card-content>
+                    <button class="btn btn-link " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <i class="fa fa-filter"></i>
+                    Filter by Country,State,City....
+                    </button>
+                    </mat-card-content>
+                    </mat-card>
+                </h2>
+            </div>
+            <div class="col-md-8">
+                <mat-card>
+                    <mat-card-content>
+                        <b><u>Distribution transformer online monitoring system</u></b><b style="float: right;">Site Location: Vaishali Appt. CSS, Borivali division.</b><br>
+                         <b >Installed date : 03/01/2023</b><b style="float: right;">Utility name : Adani electricity mumbai Ltd.</b>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+
+    </div>
+    <ng-template #realCode  class="card-header" id="headingOne">
+        <h2 class="mb-0">
+            <mat-card>
+                <mat-card-content>
+            <button class="btn btn-link " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <i class="fa fa-filter"></i>
+            Filter by Country,State,City....
+            </button>
+            </mat-card-content>
+            </mat-card>
+        </h2>
+    </ng-template>
+    <br>
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="row ">
+          <div class="col-md-12">
+                      <div class="row" >
+                          <div class="col-sm-4 col-md-2">
+                              <ng-select [items]="countryList" bindLabel="name" placeholder="Country"
+                                  [(ngModel)]="selectedCountry" (change)="countrySelection()" [clearable]="false">
+                              </ng-select>
+                          </div>
+                          <div class="col-sm-4 col-md-2">
+                              <ng-select [items]="stateList" bindLabel="name" placeholder="State"
+                                  [(ngModel)]="selectedState" (change)="stateSelection()">
+                              </ng-select>
+                          </div>
+                          <div class="col-sm-4 col-md-2">
+                              <ng-select [items]="cityList" bindLabel="name" placeholder="City"
+                                  [(ngModel)]="selectedCity" (change)="citySelection()">
+                              </ng-select>
+                          </div>
+                          <div class="col-sm-4 col-md-2">
+                              <ng-select [items]="zoneList" bindLabel="name" placeholder="Zone"
+                                  [(ngModel)]="selectedZone" (change)="zoneSelection()">
+                              </ng-select>
+                          </div>
+                          <div class="col-sm-4 col-md-2">
+                              <ng-select [items]="locationList" bindLabel="name" placeholder="Location"
+                                  [(ngModel)]="selectedLocation" (change)="locationSelection()">
+                              </ng-select>
+                          </div>
+                          <div class="col-sm-4 col-md-2">
+                              <ng-select [items]="transformerList" bindLabel="label"
+                                  placeholder="Transformer" [(ngModel)]="selectedTransformer"
+                                  (change)="transformerSelection()">
+                              </ng-select>
+                          </div>
+                      </div>
+          </div>
+      </div><br>
+    </div>
+</div>
+<div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                  <mat-card style="box-shadow: 5px 5px 5px 5px #888888;border-radius: 20px; border: 3px solid #FFFFFF; ">
+                      <mat-card-content >
+                  <div class="row">
+                    <div class="col-md-9">
+                            <ngx-ui-loader [loaderId]="'transformerTile'"></ngx-ui-loader>
+                            <span >
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <button class="btn btn-primary btn-icon icon-design">
+                                            <i class="fa fa-sitemap" style="color: white;"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-md-1">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h6 ><b class="totalTransformer" ></b>&nbsp;Transformers</h6>
+                                        <div style="display: flex;text-align: center;">
+                                            <span class="text-success" style="padding-right: 7px;">Online
+                                                <b class="online"></b></span>
+                                            <span style="padding-right: 7px;color: #007BFF;">Normal
+                                                <b class="normal"></b></span>
+                                            <span style="padding-right: 7px;color: black;">Offline
+                                                <b class="offline"></b></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </span>
+                            <span *ngIf="!transformerTile">
+                                <p class="text-danger">*Note: </p>
+                                <p class="alert alert-warning">No data to show results!</p>
+                            </span>
+                </div>
+                  <div class="col-md-3" *ngIf="transformerTile?.onlineTransformer != 0">
+                    <img src="assets/images/signal.gif" width="50px" height="50px">
+                  </div>
+                </div>
+              </mat-card-content>
+          </mat-card>
+                <div class="row">
+                <div class="col-md-12" style="margin-top: 10px;">
+                          <div class="row">
+                          <div class="col-md-6">
+                              <mat-card style="box-shadow: 1px 1px 1px 1px #888888;border-radius: 0px; border: 1px solid #FFFFFF;" >
+                                  <mat-card-content >
+                                      <ngx-ui-loader [loaderId]="'kvaTile'"></ngx-ui-loader>
+                                      <span >
+                                          <div class="row">
+                                              <div class="col-md-12">
+                                                  <table><h6><tr ><td><button class="btn  btn-icon" style="border-radius: 50%;background-color:rgb(255, 234, 0) ;">
+                                                      <p class="glitch">
+                                                          <i id="energy" class="fa fa-bolt" aria-hidden="true" aria-hidden="true" style="color: #ffffff;"></i>
+                                                      </p></button></td><td><b>KVA</b></td><td><div class="count1"></div></td></tr></h6></table>
+                                              </div>
+                                          </div>
+                                      </span>
+                                      <span *ngIf="!kvaData">
+                                          <p class="text-danger">*Note: </p>
+                                          <p class="alert alert-warning">No data to show results!</p>
+                                      </span>
+                                  </mat-card-content>
+                              </mat-card>
+                          </div>
+                          <div class="col-md-6">
+                              <mat-card  style="box-shadow: 1px 1px 1px 1px #888888;border-radius: 0px; border: 1px solid #FFFFFF;" >
+                                  <mat-card-content >
+                                      <ngx-ui-loader [loaderId]="'kwTile'"></ngx-ui-loader>
+                                      <span>
+                                          <div class="row">
+                                              <div class="col-md-12">
+                                                  <table><h6><tr ><td><button class="btn  btn-icon" style="border-radius: 50%;background-color:rgb(0, 255, 0) ;">
+                                                      <p class="glitch">
+                                                          <i id="energy" class="fa fa-bolt" aria-hidden="true" aria-hidden="true" style="color:#ffffff ;"></i>
+                                                      </p></button></td><td><b>KW</b></td><td ><div class="count2"></div></td></tr></h6></table>
+                                              </div>
+                                          </div>
+                                      </span>
+                                      <span *ngIf="!kwData">
+                                          <p class="text-danger">*Note: </p>
+                                          <p class="alert alert-warning">No data to show results!</p>
+                                      </span>
+                                  </mat-card-content>
+                              </mat-card>
+                          </div>
+                          </div>
+                          <div class="row" style="margin-top:10px">
+                            <div class="col-md-2">
+                            </div>
+                          <div class="col-md-8" >
+                              <mat-card>
+                                  <mat-card-content >
+                                      <ngx-ui-loader [loaderId]="'kwhTile'"></ngx-ui-loader>
+                                      <span >
+                                          <div class="row">
+                                              <div class="col-md-1">
+                                              </div>
+                                              <div class="col-md-12">
+                                                  <table><h6><tr ><td><button class="btn btn-icon" style="border-radius: 50%;background-color: rgb(206, 34, 34) ;">
+                                                      <p class="glitch">
+                                                          <i id="energy" class="fa fa-bolt" aria-hidden="true" aria-hidden="true" style="color:#ffffff ;"></i>
+                                                      </p></button></td><td><b>KWH</b></td>&nbsp;<td><div class="count3"></div></td></tr></h6></table>
+                                              </div>
+                                          </div>
+                                      </span>
+                                      <span *ngIf="!kwhData">
+                                          <p class="text-danger">*Note: </p>
+                                          <p class="alert alert-warning">No data to show results!</p>
+                                      </span>
+                                  </mat-card-content>
+                              </mat-card>
+                          </div>
+                        </div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-md-12" style="margin-top: 10px;">
+                  <mat-card >
+                          <mat-card-content style="box-shadow: 1px 1px 1px 1px #888888;border: 1px solid #000000;height: 190px;">
+                              <agm-map #gm [latitude]="lat1" [longitude]="lng1"[zoom]="4" [fullscreenControl]='true'
+                                  [mapTypeControl]='true' style="height: 100%;">
+                                  <agm-marker *ngFor="let data of mapData; let i = index" [latitude]="data.latitude"
+                                      [longitude]="data.longitude" (mouseOver)="onMouseOver(infoWindow,gm)"
+                                      (markerClick)="transformerClicked(data)"
+                                      [iconUrl]="data.datareceived && data.alert.length == 0 ? greenTransformerPath : data.datareceived && data.alert.length > 0 ? redTransformerPath : blackTransformerPath">
+                                      <agm-info-window [disableAutoPan]="false" #infoWindow>
+                                          <p>Transformer Id: {{data.transformerid}}</p>
+                                          <p>Site Name: {{data.sitename}}</p>
+                                          <p>KVA: {{data.Kva ? (data?.Kva | number:'1.2-3') : '-'}}</p>
+                                          <p>KWh: {{data.Kwh ? (data?.Kwh | number:'1.2-3') : '-'}}</p>
+                                          <p>Load(%): {{data?.Load ? (data?.Load | number:'1.2-3') : '-'}}</p>
+                                          <p *ngIf="data.datareceived" style="color: green;">Power: On</p>
+                                          <span *ngIf="!data.datareceived" style="color: red;">
+                                              <p>Power: Off</p>
+                                          </span>
+                                          <span *ngIf="data?.alert.length > 0" style="color: red;">
+                                              <p *ngFor="let param of data.alert">
+                                                  {{param.parametername | slice:2}}:{{param.mparametervalue}}
+                                              </p>
+                                          </span>
+                                      </agm-info-window>
+                                  </agm-marker>
+                              </agm-map>
+                          </mat-card-content>
+                      </mat-card>
+                </div>
+                </div>
+                <div class="row" style="margin-top:10px">
+                  <div class="col-md-12">
+                    <article class="widget">
+                      <div class="weatherIcon">  <div style="width:165px">
+                        <ng-select [items]="transformerList" bindLabel="label"
+                                      placeholder="Transformer" [(ngModel)]="selectedTransformerForWeather"
+                                      (change)="transformerSelectionWeather(selectedTransformerForWeather)"
+                                      [clearable]="false">
+                                  </ng-select></div><img src="assets/images/weather.gif" width="50" height="40"></div>
+                      <div class="weatherInfo">
+                        <div class="temperature"><span>{{weatherData?.temperature }}&deg;</span></div>
+                        <div class="description">
+                          <div class="weatherCondition">{{weatherData?.location}}</div>
+                          <div class="place">{{weatherData?.city}},{{weatherData?.state}}</div>
+                        </div>
+                      </div>
+                      <div class="date">Humidity: {{weatherData?.humidity}}&deg;<br>Wind: {{weatherData?.wind | number:'1.0-0'}} km/h</div>
+                    </article>
+                    <span *ngIf="!weatherData">
+                        <p class="text-danger">*Note: </p>
+                        <p class="alert alert-warning">No data to show results!</p>
+                    </span>
+                  </div>
+                </div>
+                </div>
+                <div class="col-md-8">
+                <div class="row">
+                  <div class="col-md-12">
+                    <mat-card>
+                    <mat-card-content>
+                      <div class="row">
+                          <div class="col-md-3">
+                                  <ng-select [items]="transformerList" bindLabel="label"
+                                      placeholder="Transformer" [(ngModel)]="selectedTransformerForHealth"
+                                      (change)="getTranformerHealthIndex(selectedTransformerForHealth.transformerid)"
+                                      [clearable]="false">
+                                  </ng-select>
+                            </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-1"></div>
+                              <div [class]="loadPercentageValue == 0 ? 'opca' : ''" class="col-md-3" style="margin-top:-60px;">
+                                <div style="height: 100%; width: 100%;">
+                                <ejs-circulargauge id="circular-containr" height='150px' width='190px' >
+                                        <e-axes>
+                                            <e-axis  [labelStyle]="labelStyles  ">
+                                                <e-ranges>
+                                                    <e-range start=0 end=80 color="green" radius='108%'></e-range>
+                                                    <e-range start=80 color="red" end=100 radius='108%'></e-range>
+                                                </e-ranges>
+                                                <e-pointers>
+                                                    <e-pointer [value]="loadPercentageValue" radius="70%" pointerWidth=5 color="black"  [cap]="cap"></e-pointer>
+                                                </e-pointers>
+                                            </e-axis>
+                                        </e-axes>
+                                    </ejs-circulargauge>
+                                  <p style="text-align:center"><b> Load Percentage: {{loadPercentageValue}}% </b></p>
+                          </div>
+                          </div>
+                        <div [class]="oilTempValues == 0 ? 'opca' : ''" class="col-md-3" style="margin-top:-60px;margin-left:-30px;">
+                            <div style="height: 100%; width: 100%;">
+                            <ejs-circulargauge id="circular" height='150px' width='190px' >
+                                    <e-axes>
+                                        <e-axis   [labelStyle]="labelStyle">
+                                            <e-ranges>
+                                                <e-range start=0 end=60 color="green" radius='108%'></e-range>
+                                                <e-range start=60 color="red" end=100 radius='108%'></e-range>
+                                            </e-ranges>
+                                            <e-pointers>
+                                                <e-pointer [value]="oilTempValues" radius="70%" pointerWidth=5 color="black"  [cap]="cap"></e-pointer>
+                                            </e-pointers>
+                                        </e-axis>
+                                    </e-axes>
+                                </ejs-circulargauge>
+                               <p style="text-align:center"> <b> Oil Temperature: {{oilTempValues}}°C </b></p>
+                          </div>
+                        </div>
+                        <div  [class]="windingTempValues == 0 ? 'opca' : ''" class="col-md-3" style="margin-top:-60px;margin-left:-15px;">
+                            <div style="height: 100%; width: 100%;">
+                            <ejs-circulargauge id="circular-container" height='150px' width='190px' >
+                                    <e-axes>
+                                        <e-axis   [labelStyle]="labelStyle">
+                                            <e-ranges>
+                                                <e-range start=0 end=65 color="green" radius='108%'></e-range>
+                                                <e-range start=65 color="red" end=100 radius='108%'></e-range>
+                                            </e-ranges>
+                                            <e-pointers>
+                                                
+                                                  <e-pointer [value]="windingTempValues" radius="70%" pointerWidth=5 color="black"  [cap]="cap"></e-pointer>
+                                                
+                                          </e-pointers>
+                                        </e-axis>
+                                    </e-axes>
+                                </ejs-circulargauge>
+                               
+                              <p style="text-align:center"> <b style="margin-left:-10px"> Winding Temperature: {{windingTempValues}}°C </b></p>
+                          </div>
+                          </div>
+                        <div  [class]="oilLevelValues == 0 ? 'opca' : ''" class="col-md-3" style="margin-top:-60px;margin-left:-30px;">
+                            <div style="height: 100%; width: 100%;">
+                            <ejs-circulargauge id="circulars" height='150px' width='190px' >
+                                    <e-axes>
+                                        <e-axis>
+                                            <e-ranges>
+                                                <e-range start=0 end=30 color="red"  radius='108%'></e-range>
+                                                <e-range start=30 end=70  color="green"  radius='108%'></e-range>
+                                                <e-range start=70 color="red" end=100 radius='108%'></e-range>
+                                            </e-ranges>
+                                            <e-pointers>
+                                                <e-pointer [value]="oilLevelValues" radius="70%" pointerWidth=5 color="black"  [cap]="cap"></e-pointer>
+                                            </e-pointers>
+                                        </e-axis>
+                                    </e-axes>
+                                </ejs-circulargauge>
+                              <p style="text-align:center"> <b> Oil Level: {{oilLevelIndicator}} </b></p>
+                          </div>
+                          </div>
+                      </div>
+                  </mat-card-content>
+              </mat-card>
+                </div>
+                </div>
+                <div  class="row" style="margin-top: 10px;">
+                  <div [class]="healthOfTransformer == 0 ? 'opca' : ''" class="col-md-4" >
+                    <mat-card style="height: 100%; width: 100%;">
+                      <mat-card-content>
+                    <ejs-circulargauge id="circulare" height='250px' width='240px' >
+                            <e-axes>
+                                <e-axis  [labelStyle]="labelStyles" >
+                                    <e-ranges>
+                                      <e-range start=0 end=70 color="red"  radius='108%'></e-range>
+                                      <e-range start=70 end=85  color="orange"  radius='108%'></e-range>
+                                      <e-range start=85 color="green" end=100 radius='108%'></e-range>
+                                    </e-ranges>
+                                    <e-pointers>
+                                      <e-pointer [value]="healthOfTransformer" [color]="healthColor" type="RangeBar" radius="60%" pointerWidth=10></e-pointer>
+                                        <e-pointer [value]="healthOfTransformer" radius="70%" pointerWidth=5 color="black"  [cap]="cap"></e-pointer>
+                                    </e-pointers>
+                                </e-axis>
+                            </e-axes>
+                        </ejs-circulargauge>
+                    <p style="text-align:center"><b>Health Index&nbsp;{{healthOfTransformer}}%</b> </p>
+                       </mat-card-content>
+                       </mat-card>
+                  </div>
+                    <div class="col-md-8" >
+                        <div id="GFG" class="carousel slide" data-ride="carousel">
+                            <!-- Indicators -->
+                            <ul class="carousel-indicators">
+                                <li data-target="#GFG" data-slide-to="0"
+                                    class="active">
+                                </li>
+                                <li data-target="#GFG" data-slide-to="1"></li>
+                                <li data-target="#GFG" data-slide-to="2"></li>
+                            </ul>
+                            <!-- The slideshow -->
+                            <div class="carousel-inner">
+                                <div class="carousel-item active"  >
+                                    <mat-card >
+                                        <mat-card-content >
+                                            <b>LOAD PROFILE</b>
+                                            <ngx-ui-loader [loaderId]="'dataLoadProfile'"></ngx-ui-loader>
+                                            <div *ngIf="dataLoadProfile && dataLoadProfile.length > 0" >
+                                                <plotly-plot [data]="dataLoadProfile" [layout]="graphLoadProfile.layout"
+                                                    [config]="graphLoadProfile.config" [useResizeHandler]="false">
+                                                </plotly-plot>
+                                            </div>
+                                            <div *ngIf="dataLoadProfile && dataLoadProfile.length == 0">
+                                                <p class="text-danger">*Note: </p>
+                                                <p class="alert alert-warning">No data to show results!</p>
+                                            </div>
+                                        </mat-card-content>
+                                    </mat-card>
+                                </div>
+                                <div class="carousel-item">
+                                    <mat-card >
+                                        <mat-card-content >
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <b>Alerts</b>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <ngx-ui-loader [loaderId]="'dataAlertCount'"></ngx-ui-loader>
+                                                        <ng-select [items]="durationList" bindLabel="name" placeholder="Duration"
+                                                            [(ngModel)]="selectedDurationAlert"
+                                                            (change)="durationSelectionAlert(selectedDurationAlert,'alert')" [clearable]="false">
+                                                        </ng-select>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div *ngIf="showDateRange1">
+                                                        <input [owlDateTime]="dt2" [selectMode]="'range'" [owlDateTimeTrigger]="dt2"
+                                                            placeholder="Select Date Range" (dateTimeChange)="changeDateRange1($event)">
+                                                        <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
+                                            <div *ngIf="dataAlertCount && dataAlertCount.length > 0"  style="margin-top: -60px;width:100%">
+                                                <plotly-plot [data]="dataAlertCount" [layout]="graphAlertCount.layout"
+                                                    [config]="graphAlertCount.config" [useResizeHandler]="true">
+                                                </plotly-plot>
+                                            </div>
+                                            <div *ngIf="dataAlertCount && dataAlertCount.length == 0">
+                                                <p class="text-danger">*Note: </p>
+                                                <p class="alert alert-warning">No data to show results!</p>
+                                            </div>
+                                        </mat-card-content>
+                                    </mat-card>
+                                </div>
+                                <div class="carousel-item">
+                                    <mat-card >
+                                        <mat-card-content style="width: 100%;">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <b>Transformer Alert</b>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <ng-select [items]="parameterList" bindLabel="name" placeholder="Select Parameter"
+                                                    [(ngModel)]="selectedParameter" (change)="parameterChange(selectedParameter)" [clearable]="false">
+                                                </ng-select>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <ng-select [items]="durationList" bindLabel="name" placeholder="Duration"
+                                                        [(ngModel)]="selectedDuration"
+                                                        (change)="durationSelectionAlert(selectedDuration,'talert')" [clearable]="false">
+                                                    </ng-select>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div *ngIf="showDateRange" >
+                                                        <input [owlDateTime]="dt1" [selectMode]="'range'" [owlDateTimeTrigger]="dt1"
+                                                            placeholder="Select Date Range" (dateTimeChange)="changeDateRange($event)">
+                                                        <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+                                            <ngx-ui-loader [loaderId]="'dataTransformerAlert'"></ngx-ui-loader>
+                                            <div *ngIf="dataTransformerAlert && dataTransformerAlert.length > 0" style="margin-top:-65px;width: 100%;">
+                                                <plotly-plot [data]="dataTransformerAlert" [layout]="graphTransformerAlert.layout"
+                                                    [config]="graphTransformerAlert.config" [useResizeHandler]="true">
+                                                </plotly-plot>
+                                            </div>
+                                            <div *ngIf="dataTransformerAlert && dataTransformerAlert.length == 0">
+                                                <p class="text-danger">*Note: </p>
+                                                <p class="alert alert-warning">No data to show results!</p>
+                                            </div>
+
+                                        </mat-card-content>
+                                    </mat-card>
+                                </div>
+                            </div>
+                            <a style="width:10px" class="carousel-control-prev"
+                                href="#GFG" data-slide="prev">
+                                <span style="color:black" class="carousel-control-prev-icon">
+                                </span>
+                            </a>
+                            <a style="width:10px" class="carousel-control-next"
+                                href="#GFG" data-slide="next">
+                                <span style="color:black" class="carousel-control-next-icon">
+                                </span>
+                            </a>
+		                </div>
+                  </div>
+                </div>
+
+            </div>
+            </div><br>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+            </div>
+            <button class="mdc-fab app-fab--absolute" color="warn" (click)='openAlertBox()' aria-label="alert">
+                <div class="mdc-fab__ripple"></div>
+                <p style="color: whitesmoke;"></p>
+                <span class="material-icons" style="color: whitesmoke;">
+                    notifications_active
+                </span>
+            </button>
+        </div>

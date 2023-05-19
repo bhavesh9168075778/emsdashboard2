@@ -1,0 +1,146 @@
+<mat-toolbar class="example-toolbar nav-header">
+    <div>
+		<button mat-icon-button *ngIf="!ismobileView" (click)="isExpanded = !isExpanded;resizeChart()">
+			<mat-icon>menu</mat-icon>
+		</button>
+		<button mat-icon-button *ngIf="ismobileView" (click)="sidenav.toggle();resizeChart()">
+			<mat-icon>menu</mat-icon>
+		</button>
+	</div>
+	
+	<div *ngIf="ismobileView">
+		<img class="img-fluid" alt="Theme-Logo" id="logo1" src="assets/images/mobile_logo.png">
+	</div>
+	<div>
+		<img *ngIf="!ismobileView" class="img-fluid" alt="Theme-Logo" id="logo1" src="assets/images/desktop_logo.png">
+	</div>
+		
+
+		<!-- <div *ngIf="ismobileView">
+				<span style="padding-left: 4px;
+				font-size: 14px; display: block; margin-bottom: 0em; 
+				color: #EC2026;">BETTER OPERATIONS &</span>
+				<span style="padding-left: 4px;
+				font-size: 14px; display: block; margin-top: 0em; 
+				color: #EC2026;">LIFE BY ANALYTICS</span>
+		</div>
+		<div *ngIf="!ismobileView">
+				<span style="padding-left: 4px;
+				font-size: 14px; display: block; margin-bottom: 0em; 
+				color: #EC2026;">BETTER OPERATIONS & LIFE BY ANALYTICS</span>
+		</div> -->
+
+		<!-- <span style="padding-left: 4px;
+		font-size: 10px; display: block; margin-bottom: -.2em; 
+		color: #EC2026;"><p>BETTER OPERATIONS &<br style="display: block; margin-bottom: -.2em;">LIFE BY ANALYTICS </p></span>
+		 -->
+	
+	<!-- <h1 class="example-app-name">BOLA</h1> -->
+	<!-- <span *ngIf="ismobileView" style="flex: 0.7 0.7 auto;"></span>
+	<span *ngIf="!ismobileView" style="flex: 1 1 auto;"></span> -->
+	
+	<span style="flex: 1 1 auto;"></span>
+	<button type="button" class="btn launch" data-toggle="modal" data-target="#staticBackdrop"> <p class="mousehover" matBadge={{notificationCount}} matBadgeColor="warn" >
+		<i style="font-size:24px" class="fa fa-bell"></i></p>
+	</button>
+	<div class="blob"></div>
+	<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="text-right"> <i class="fa fa-close close" data-dismiss="modal"></i> </div><br>
+					<div class="col-md-12" (click)="$event.stopPropagation();">
+						<div class="row">
+							<div class="col-md-6" *ngFor="let mandatory of mandatoryParameter" style="padding-bottom: 0px;"
+								[style.color]="mandatory.color">
+								<p (click)="$event.stopPropagation()"><b>{{mandatory.name}}</b></p>
+								<p class="mousehover "><a [routerLink]=""
+										(click)="$event.stopPropagation();showTable(mandatory)">{{mandatory.value}}</a></p>
+							</div>
+						</div>
+						<hr (click)="$event.stopPropagation();">
+					</div>
+					<div class="col-md-12" (click)="$event.stopPropagation();">
+						<div class="row">
+							<div class="col-md-6" *ngFor="let nonmandatory of nonmandatoryParameter">
+								<p style="width:95%">
+									<span style="width:85%">{{nonmandatory.name}}</span>
+									<span style="width:10%;float: right;">
+										<mat-checkbox [(ngModel)]="nonmandatory.mandatory" (change)="checkboxChange(nonmandatory)"
+											(click)="$event.stopPropagation();"></mat-checkbox>
+									</span>
+								</p>
+							</div>
+						</div>
+					</div>
+					<br>
+					<div    *ngIf="displayname" style="width: 100%;overflow-y: scroll " (click)="$event.stopPropagation();">
+						<table style="width: 100%;  "class="  table-bordered " >
+							<thead class="name">
+								<tr>
+									<th *ngFor="let header of tableHeader; let i = index">{{header}}</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let data of tableBody">
+									<td>{{data?.transformerid}}</td>
+									<td>{{data?.alertType}}</td>
+									<td>{{data?.maxtimestamp}}</td>
+									<td>{{data?.value}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+			<!-- <mat-icon class="mousehover" matBadge={{notificationCount}} matBadgeColor="warn" [matMenuTriggerFor]="menu1">
+					notifications</mat-icon> -->
+		<button mat-button [matMenuTriggerFor]="menu" style="text-transform: capitalize;">
+			<i class="fa fa-user-circle fa-2x" aria-hidden="true"></i> {{currentUserData?.name}}</button>
+		<mat-menu #menu="matMenu">
+			<span *ngIf="currentUserData?.utility" style="padding: 5px;">{{currentUserData?.utility?.name}}</span><hr>
+			<button mat-menu-item type="button" (click)="logout()"><i class="fa fa-th-large" aria-hidden="true"></i>
+				&nbsp;Logout</button>
+		</mat-menu>
+		
+		<div style="padding-top: 0px;font-size: 18px">
+				<p style="height: 20px;margin-top: 0px !important;">{{ now | date:'dd/MM/yyyy'}}</p>
+				<p>{{ now | date:'HH:mm:ss'}}</p>
+			</div>
+</mat-toolbar>
+<mat-sidenav-container class="example-container" autosize>
+	<mat-sidenav #sidenav class="example-sidenav" [mode]="isLargeScreen() ? 'side' : 'over'" opened="true"
+		style="background-color: #de2a21!important">
+		<mat-nav-list *ngFor="let item of dashboardArray;let i=index">
+			<mat-list-item (click)="menuClick(i)" class="parent">
+				<span *ngIf="item.haschildMenu" id="sidenavfont" style="display: flex;align-items: center"
+					(click)="handleMenuClose()">
+					<i [ngClass]="item.icon" style="color: white;"></i>
+					<span class="full-width bg-color" *ngIf="isExpanded">&nbsp;{{item.name}}</span>
+					<mat-icon class="menu-button" [ngClass]="{'rotated' : item.showSubmenu}" *ngIf="isExpanded">
+						expand_more</mat-icon>
+				</span>
+				<span *ngIf="!item.haschildMenu" id="sidenavfont" style="display: flex;align-items: center">
+					<i [ngClass]="item.icon" style="color: white;" (click)="isExpanded = !isExpanded;resizeChart()"></i>
+					<a class="full-width bg-color" *ngIf="isExpanded" (click)="setroute(item);handleMenuClose()"
+						[routerLink]="item.link">&nbsp;{{item.name}}</a>
+				</span>
+			</mat-list-item>
+			<div class="submenu" [ngClass]="{'expanded' : item.showSubmenu}" *ngIf="item.showSubmenu && isExpanded">
+				<div *ngFor="let childItem of item.childmenu">
+					<a mat-list-item (click)="setroute(childItem)" [routerLink]="childItem.link" (click)="handleMenuClose()"
+						id="sidenavfont">{{childItem.name}}</a>
+				</div>
+			</div>
+		</mat-nav-list>
+	</mat-sidenav>
+	<div style="padding: 10px;background-color: #F1F1F1;">
+		<router-outlet></router-outlet>
+	</div>
+
+
+</mat-sidenav-container>
