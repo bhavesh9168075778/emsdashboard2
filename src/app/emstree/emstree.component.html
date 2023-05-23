@@ -1,1 +1,18 @@
-<div id="chart" style="width: 100%; height: 400px;"></div>
+
+<mat-card>
+    <mat-card-content style="height: max-content;">
+        <ul class="connected-dots1"  > <li ><h3><img src="assets/images/meter.png" height="5%" width="5%"> Main Energy Meter</h3></li></ul>
+                <div class="block-container"  style="overflow: auto;"  >
+                    <div class="block" *ngFor="let ar of arr">
+                        <b style="margin-left: 5px;  white-space: nowrap; ">{{ar[0].floor}}</b>
+                        <div class="line">
+                            <ul class="connected-dots" *ngFor="let ar1 of ar">
+                                <li style="white-space: nowrap;"  [ngStyle]="{'color': ar1.alert > 8 ? 'red': ar1.alert < 3 ?'green':'black'}" > <span [ngClass]="{'blinkr':ar1.alert>8,'blink':ar1.alert < 3 }" >&#9673;</span>  {{ar1.meterName}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+</mat-card-content>
+</mat-card>
+
+
