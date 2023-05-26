@@ -222,8 +222,10 @@ export class EmsIndividualDashboardComponent implements OnInit {
             }
 
           }
-          this.totalkwhcurrentmonth = Number(this.totalkwhcurrentmonth).toFixed(0);
-          this.latestkwh_p = Number(this.latestkwh_p).toFixed(0);
+          this.totalkwhcurrentmonth = Number(this.totalkwhcurrentmonth).toFixed(2);
+          this.KWHValuer= Number(this.KWHValuer).toFixed(2);
+          this.KWHValuel=Number(this.KWHValuel).toFixed(2);
+          this.latestkwh_p = Number(this.latestkwh_p).toFixed(2);
 
           this.pf = Number(this.averagepf / count).toFixed(2);
           if (this.averagepf == 0) {
@@ -276,13 +278,17 @@ export class EmsIndividualDashboardComponent implements OnInit {
         }
 
       }
-      this.totalkwhcurrentmonth = Number(this.totalkwhcurrentmonth).toFixed(0);
-    
+      this.totalkwhcurrentmonth = Number(this.totalkwhcurrentmonth).toFixed(2);
+      this.KWHValuer= Number(this.KWHValuer).toFixed(2);
+      this.KWHValuel=Number(this.KWHValuel).toFixed(2);
+      this.latestkwh_p = Number(this.latestkwh_p).toFixed(2);
+
       this.pf = Number(this.averagepf / count).toFixed(2);
       if (this.averagepf == 0) {
         this.pf = 0;
       }
-      this.latestkwh_p = Number(this.latestkwh_p).toFixed(0);
+     
+      this.updateGraphDataFor_E(this.totalkwhcurrentmonth,this.KWHValuer,this.KWHValuel);
     });
   }
 
@@ -496,17 +502,16 @@ export class EmsIndividualDashboardComponent implements OnInit {
 
   }
   energyre_co_lo_graph() {
-
     var options = {
       tooltip: {
-        theme: 'dark', // Use a dark theme for the tooltip
+        theme: 'dark',
         style: {
-          backgroundColor: '#333', // Change the tooltip background color
-          color: '#fff' // Change the tooltip text color
+          backgroundColor: '#333',
+          color: '#fff'
         }
       },
       series: [{
-        nmae:"KVAH",
+        name: "KVAH",
         data: [this.totalkwhcurrentmonth, this.KWHValuer, this.KWHValuel]
       }],
       chart: {
@@ -516,29 +521,32 @@ export class EmsIndividualDashboardComponent implements OnInit {
       },
       grid: {
         show: false,
-
       },
       plotOptions: {
         bar: {
           borderRadius: 4,
           horizontal: true,
-
         }
       },
       dataLabels: {
-        enabled: false
+        enabled: true, // Enable data labels
+        formatter: function (val, opt) {
+          return val.toFixed(2); // Format the label to display two decimal places
+        },
+        style: {
+          colors: ['#fff'] // Set the color of the data labels
+        }
       },
       colors: ["#7966E7"],
       xaxis: {
         title: {
-
           text: "KVAH",
           style: {
             color: "white",
             fontFamily: 'Lucida Grande,Lucida Sans Unicode,RooneySans-Regular,Trebuchet MS,sans-serif',
             fontSize: '5px'
           },
-          position: 'top', // set position to 'bottom'
+          position: 'top',
           offsetY: -125,
           offsetX: -50
         },
@@ -554,7 +562,6 @@ export class EmsIndividualDashboardComponent implements OnInit {
         }
       },
       yaxis: {
-
         labels: {
           show: true,
           style: {
@@ -563,12 +570,11 @@ export class EmsIndividualDashboardComponent implements OnInit {
         }
       }
     };
-
-
+  
     this.chart_e = new ApexCharts(this.energyconsumption_graph.nativeElement, options);
     this.chart_e.render();
-
   }
+  
 
   efficiencygraph() {
     var options = {

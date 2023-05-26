@@ -57,8 +57,8 @@
             <mat-card style="height:10vh;    margin-bottom: 1px;">
                 <mat-card-content style="color: white;">
                     <div class="col-md-12 padding"
-                        style="text-align:center;font-family:RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 18px;">
-                        {{totalkwhcurrentmonth}} <a style="font-size: 12px;">KVAH</a><br>
+                        style="text-align:center;font-family:RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 22px;">
+                        {{totalkwhcurrentmonth}} <a style="font-size: 8px;">KVAH</a><br>
                         <div
                             style="font-family: RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 12px;">
                             Overall Energy Consume</div>
@@ -69,16 +69,16 @@
                 <mat-card-content style="color: white;">
                     <div class="row" style="text-align: center;">
                         <div class="col-md-6"
-                            style="font-family:RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 18px;">
-                            {{KWHValuer}} <a style="font-size: 12px;">KVAH</a><br>
+                            style="font-family:RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 22px;">
+                            {{KWHValuer}} <a style="font-size: 8px;">KVAH</a><br>
                             <div
                                 style="font-family: RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 12px;">
                                 Total Energy Received <br>In Current Month</div>
                         </div>
 
                         <div class="col-md-6"
-                            style=" font-family: RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 18px;">
-                            {{latestkwh_p}} <a style="font-size: 12px;">KVAH</a><br>
+                            style=" font-family: RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 22px;">
+                            {{latestkwh_p}} <a style="font-size: 8px;">KVAH</a><br>
                             <div
                                 style="font-family: RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 12px;">
                                 Total Energy Consumed <br>In Current Month</div>
@@ -86,16 +86,16 @@
                     </div>
                     <div class="row" style="text-align: center;">
                         <div class="col-md-6"
-                            style="margin-top: 3%;font-family:RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 18px;">
-                            {{KWHValuel}} <a style="font-size: 12px;">KVAH</a><br>
+                            style="margin-top: 3%;font-family:RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 22px;">
+                            {{KWHValuel}} <a style="font-size: 8px;">KVAH</a><br>
                             <div
                                 style="font-family: RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 12px;">
                                 Total Energy Loss <br>In Current Month</div>
                         </div>
 
                         <div class="col-md-6"
-                            style="margin-top: 3%; font-family: RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 18px;">
-                            {{pf}} <a style="font-size: 12px;">PF</a><br>
+                            style="margin-top: 3%; font-family: RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 22px;">
+                            {{pf}} <a style="font-size: 8px;">PF</a><br>
                             <div
                                 style="font-family: RooneySans-Regular, 'Lucida Grande', 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif; font-size: 12px;">
                                 Current month average power factor </div>
@@ -129,8 +129,8 @@
                 </div>
               </mat-card-content>
             </mat-card>
-          
-            <mat-card style="max-height: 274px; max-width: 100%; overflow-y: auto;">
+          <div class="col-md-12 mpadding">
+          <mat-card style=" overflow-y: auto;width:100%">
               <mat-card-content>
                 <div class="static-text">Realtime Alerts</div>
                 <div class="table-container">
@@ -147,6 +147,8 @@
                 </div>
               </mat-card-content>
             </mat-card>
+            </div>
+         
           </div>
           
     </div>

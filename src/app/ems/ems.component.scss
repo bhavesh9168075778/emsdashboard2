@@ -1,14 +1,20 @@
+
+
+
+
+
 .graph-container {
   height: 100%;
 }
 
 .table-container {
-  max-height: 202px;
+
   overflow-y: auto;
 }
 
 .example-container {
   width: 100%;
+  font-size: 50px;
 }
 .mat-paginator{
   background-color: transparent;
@@ -21,13 +27,13 @@
   top: 0;
   z-index: 1;
   text-align: center; /* Center align header values */
-  padding: 8px 16px;
+
 }
 
 
 .cell {
   color: red; /* Cell text color */
-  padding: 8px 16px; /* Cell padding */
+ 
 }
 
 .header-row {
@@ -40,7 +46,7 @@
   font-size: 18px;
 }
 .graphpadding{
-  padding: 0px 0px 0px 0px;
+  padding: 0px 2px 0px 0px;
   height: 30vh;
   margin-bottom: 1px;
 }
@@ -168,15 +174,15 @@ color: white;
     width: 100%;
 }
 .mat-header-cell, .mat-cell {
-    min-width: 190px;
+    min-width: 67px;
     color:white;
-   
+   font-size: 11px;
 }
 .mat-form-field-underline{
   background-color:transparent;
 }
 .mat-row, .mat-header-row {
-  min-width: 2800px;
+ 
   width: 100%;
 }
 .mat-form-field-flex{
@@ -187,7 +193,7 @@ color: white;
   border: 1px solid ;
   border-radius: 4px;
   margin-top: 8px;
-  padding: 2px;
+  
 }
 .mat-form-field-wrapper{
   padding-bottom: 1.25em;
@@ -199,7 +205,7 @@ color: white;
   table {
     border-width: 1px; 
     border: 1px solid white;
-    padding: 10px;
+  
     text-align: center;
      }
   table {
@@ -210,3 +216,9 @@ color: white;
       margin-left: 5px;
       border: 1px solid white;
       }
+.td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type, th.mat-header-cell:first-of-type {
+    padding-left: 0px; 
+}
+td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type, th.mat-header-cell:first-of-type {
+    padding-left: 0px;
+}

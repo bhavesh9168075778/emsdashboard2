@@ -59,7 +59,7 @@ import { AddUpdateEnergymeterComponent } from './energymeter-manager/add-update-
 import { EmsreportComponent } from './reports/emsreport/emsreport.component';
 import { EmsIndividualDashboardComponent } from './ems-individual-dashboard/ems-individual-dashboard.component';
 import { DashboardSelectionComponent } from './dashboard-selection/dashboard-selection.component';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 const appearance: MatFormFieldDefaultOptions = {
@@ -102,6 +102,7 @@ DashboardSelectionComponent
   ],
   imports: [
     BrowserModule,
+    MatTooltipModule,
     CircularGaugeModule,
     GaugeChartModule,
     AppRoutingModule,

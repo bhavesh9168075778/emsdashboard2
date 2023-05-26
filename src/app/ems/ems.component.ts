@@ -72,6 +72,7 @@ public annotaions: object;
 endValue = 10000000;
 KWHValue:any;
 KWHValuer:any=[500];
+
 KWHValuel:any=[100];
 pfValue;
 labelStyles= {
@@ -263,8 +264,8 @@ meterCount(deviceid:any){
         
         this.energyMeterId.push(response.result[0][i]);
       }
-      console.log("qwertyuioopp",this.averagepf/count)
-      
+      this.KWHValuel = Number(this.KWHValuel).toFixed(2);
+      this.KWHValuer = Number(this.KWHValuer).toFixed(2);
       this.pf = Number(this.averagepf/count).toFixed(2);
       let data = [];
       let time = [];
@@ -330,6 +331,7 @@ meterCount(deviceid:any){
     console.log("Month wise data",response.result[2])
     this.ngxLoader.stopLoader('emsDashboard');
     this.totalkwhcurrentmonth=currentMonthTotalKwh;
+    this.totalkwhcurrentmonth=Number(this.totalkwhcurrentmonth).toFixed(2)
     this.monthWiseConsumptionGraph(prvYearData,data,date);
     this.billAmount(currentMonthTotalKwh,costting,cost);
     this.energyre_co_lo_graph(this.KWHValuer,this.totalkwhcurrentmonth,this.KWHValuel);
@@ -1254,7 +1256,7 @@ consumption_graph()
  }
  billAmount(unit,cost,costperUnit){
    this.cost = Number(unit*costperUnit).toFixed(0);
-
+   this.cost = Number(this.cost).toFixed(2)
  }
 
 }
